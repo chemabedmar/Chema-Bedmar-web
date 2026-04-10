@@ -1,6 +1,6 @@
-# mal.marketing
+# Chema.Bedmar
 
-Web personal de Chema Bedmar — CMO Interino y fundador de MalMarketing.
+Web personal de Chema Bedmar — CMO Interino y fundador de Chema.Bedmar.
 
 ## Estructura
 
@@ -18,7 +18,7 @@ Web personal de Chema Bedmar — CMO Interino y fundador de MalMarketing.
 ```bash
 git init
 git add .
-git commit -m "Initial commit — mal.marketing"
+git commit -m "Initial commit — Chema.Bedmar"
 git branch -M main
 git remote add origin https://github.com/TU_USUARIO/mal-marketing.git
 git push -u origin main
@@ -33,11 +33,11 @@ git push -u origin main
 5. Output Directory: dejar vacío (`.` raíz)
 6. Click **Deploy**
 
-### 3. Conectar el dominio mal.marketing
+### 3. Conectar el dominio Chema.Bedmar
 
 En el dashboard de Vercel:
 1. **Settings → Domains**
-2. Añadir `mal.marketing` y `www.mal.marketing`
+2. Añadir `Chema.Bedmar` y `www.Chema.Bedmar`
 3. Vercel te dará dos registros DNS — añádelos en tu proveedor de dominio:
    - Tipo `A` → apuntando a la IP de Vercel
    - Tipo `CNAME` para `www` → `cname.vercel-dns.com`
@@ -65,7 +65,7 @@ git push
 ## Redirección de estonoesparati.com
 
 En el dashboard de Vercel, añade el dominio `estonoesparati.com` al mismo proyecto.
-Vercel lo redirigirá automáticamente a `mal.marketing`.
+Vercel lo redirigirá automáticamente a `Chema.Bedmar`.
 
 ## Tipografía
 
