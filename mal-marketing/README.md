@@ -6,9 +6,12 @@ Web personal de Chema Bedmar — CMO Interino y fundador de MalMarketing.
 
 ```
 /
-├── index.html       # One-pager completo
-├── vercel.json      # Config de Vercel
-└── README.md        # Este archivo
+├── index.html           # One-pager completo (HTML + CSS inline, sin JS)
+├── restaurantes.html    # Landing /restaurantes
+├── assets/
+│   └── hero-portrait.jpg  # Retrato del hero
+├── vercel.json          # Config de Vercel
+└── README.md            # Este archivo
 ```
 
 ## Despliegue en Vercel + GitHub
@@ -48,8 +51,8 @@ Busca y reemplaza estos valores en `index.html`:
 
 | Placeholder | Reemplazar por |
 |---|---|
-| `https://calendly.com/` | Tu enlace real de Calendly |
-| `chemabedmar@gmail.com` | Tu email real si quieres mostrarlo |
+| `mailto:chemabedmar@gmail.com` | El email real de contacto (los dos CTA) |
+| `https://linkedin.com/in/chemabedmar` | Tu perfil real de LinkedIn |
 
 ### Actualizaciones futuras
 
@@ -67,16 +70,29 @@ git push
 En el dashboard de Vercel, añade el dominio `estonoesparati.com` al mismo proyecto.
 Vercel lo redirigirá automáticamente a `mal.marketing`.
 
+## Dirección visual — Bauhaus sobrio
+
+Retícula estricta, mucho aire, jerarquía por tamaño y posición, un solo acento de
+color, cero ornamento. Sin degradados, sin sombras, sin bordes redondeados, sin
+transparencias y sin movimiento (ni animaciones de entrada, ni parallax, ni
+acordeones). En móvil la retícula colapsa a una columna sin perder el aire.
+
+El único elemento geométrico de marca es la barra roja, y siempre es estructural:
+separa, ordena o señala. Nunca decorativa.
+
 ## Tipografía
 
 La web usa **Barlow Condensed** (titulares) y **Barlow** (cuerpo) de Google Fonts.
-Cargadas desde CDN sin impacto en el repositorio.
+Cargadas desde CDN sin impacto en el repositorio. Dos pesos como máximo.
 
 ## Paleta
 
 | Variable | Hex | Uso |
 |---|---|---|
-| `--black` | `#0A0A0A` | Fondo principal |
-| `--red` | `#D72638` | Acento y CTA |
-| `--white` | `#F5F5F0` | Texto principal |
-| `--gray4` | `#555555` | Texto secundario |
+| `--paper` | `#F5F5F0` | Fondo principal (blanco roto — nunca `#FFFFFF`) |
+| `--ink` | `#0A0A0A` | Texto principal |
+| `--ink-2` | `#1A1A1A` | Cuerpo de texto |
+| `--red` | `#D72638` | Único color de marca: acento y CTA |
+| `--rule` | `#D8D6CE` | Hairline de retícula |
+| `--rule-2` | `#C4C1B7` | Hairline estructural |
+| `--mute` | `#5C5A54` | Texto secundario |
