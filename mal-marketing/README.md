@@ -51,7 +51,7 @@ Busca y reemplaza estos valores en `index.html`:
 
 | Placeholder | Reemplazar por |
 |---|---|
-| `mailto:chemabedmar@gmail.com` | El email real de contacto (los dos CTA) |
+| `https://calendly.com/chemabedmar/30min` | Tu enlace real de Calendly (los dos CTA) |
 | `https://linkedin.com/in/chemabedmar` | Tu perfil real de LinkedIn |
 
 ### Actualizaciones futuras
