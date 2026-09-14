@@ -98,7 +98,8 @@ section{position:relative}
 /* ── HERO ── */
 .hero{padding-block:clamp(30px,5vh,58px) clamp(48px,9vh,110px);overflow:hidden}
 .hero-type{position:relative;z-index:2;pointer-events:none}
-.disp-cut{overflow:hidden;width:46%;display:block}
+/* La segunda línea va entera: el eco se lee, no se recorta */
+.disp-cut{display:block;width:100%}
 .disp{
   font-family:var(--fd);font-size:clamp(64px,17vw,286px);line-height:.78;
   letter-spacing:-.02em;text-transform:uppercase;display:block;white-space:nowrap;
@@ -193,8 +194,6 @@ section{position:relative}
   .hero-lower{grid-template-columns:minmax(0,1fr)}
   .hero-img{width:76%;max-height:none;margin-left:auto}
   .hero-copy{max-width:none}
-  /* En una columna el eco recortado se repetiría entero y leería como error */
-  .disp-cut{display:none}
   .disp{white-space:normal}
   .nums,.split,.end-grid{grid-template-columns:minmax(0,1fr)}
   .split-sticky{position:static}
