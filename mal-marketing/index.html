@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="CMO Interino para empresas que quieren crecer sin perder de vista a las personas. Más de 25 años en producto y marca. MalMarketing — Chema Bedmar.">
   <meta name="author" content="Chema Bedmar">
-  <meta name="theme-color" content="#F5F5F0">
+  <meta name="theme-color" content="#F1F1EF">
   <meta property="og:title" content="MalMarketing · Chema Bedmar — CMO Interino">
   <meta property="og:description" content="Si buscas a alguien que automatice tu marketing, no soy tu persona. Marketing que empieza escuchando.">
   <meta property="og:type" content="website">
@@ -28,299 +28,193 @@
   <!-- End Google Tag Manager -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
 /* ======================================================
-   mal.marketing — Bauhaus sobrio
-   Retícula estricta, mucho aire, un solo acento de color.
-   Sin degradados, sin sombras, sin radios, sin movimiento.
+   mal.marketing — rojo como única tinta
+   Sistema visual del archivo de diseño (mal-fluid.css),
+   variante naranja + papel neutro.
+   Sin animaciones, sin parallax, sin JS de interfaz.
    ====================================================== */
 
 :root{
-  --paper:#F5F5F0;   /* blanco roto — nunca #FFF */
-  --ink:#0A0A0A;
-  --ink-2:#1A1A1A;
-  --red:#D72638;     /* único color de marca */
-  --rule:#D8D6CE;    /* hairline */
-  --rule-2:#C4C1B7;  /* hairline estructural */
-  --mute:#5C5A54;
-
-  --fh:'Barlow Condensed','Barlow',sans-serif;
-  --fb:'Barlow',sans-serif;
-  --hw:500;
-  --htr:-.02em;
-  --hlh:1.02;
-
-  --gut:clamp(24px,5vw,88px);
-  --max:1180px;
+  --ink:#F4361C;          /* rojo/naranja = única tinta */
+  --paper:#F1F1EF;
+  --paper-2:#E6E6E4;
+  --paper-3:#EDEDEA;
+  --fd:'Instrument Serif',Times,serif;
+  --fs:'Helvetica Neue',Helvetica,'Archivo',Arial,sans-serif;
+  --gut:clamp(20px,4.6vw,64px);
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:auto}
 body{
   margin:0;background:var(--paper);color:var(--ink);
-  font-family:var(--fb);font-size:19px;line-height:1.55;
-  -webkit-font-smoothing:antialiased;
+  font-family:var(--fs);font-size:20px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 img{display:block;max-width:100%}
+p{margin:0;max-width:52ch}
+h1,h2,h3{margin:0;font-weight:400;color:var(--ink)}
+::selection{background:var(--ink);color:var(--paper)}
+
 a{color:var(--ink);text-decoration:none}
-a:hover{color:var(--red)}
-::selection{background:var(--red);color:#fff}
+a.u{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 
-.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
-.sect{padding:clamp(72px,11vw,150px) 0;border-top:1px solid var(--rule)}
-.sect:first-of-type{border-top:0}
+/* ── Layout ── */
+.wrap{padding:0 var(--gut)}
+section{position:relative}
+.s-a{background:var(--paper)}
+.s-b{background:var(--paper-2)}
+.s-c{background:var(--paper-3)}
+.pad{padding-block:clamp(72px,12vh,150px)}
 
-/* ── Tipografía ───────────────────────────────────────── */
-h1,h2,h3,h4{
-  font-family:var(--fh);font-weight:var(--hw);
-  letter-spacing:var(--htr);line-height:var(--hlh);
-  margin:0;color:var(--ink);
+/* ── Nav ── */
+.nav{
+  position:sticky;top:0;z-index:60;background:var(--paper);
+  padding:16px var(--gut);display:flex;align-items:baseline;
+  justify-content:space-between;gap:16px 24px;flex-wrap:wrap;
 }
-h1{font-size:clamp(42px,6.2vw,86px)}
-h2{font-size:clamp(32px,4.4vw,60px)}
-h3{font-size:clamp(21px,2.1vw,27px);line-height:1.2}
-p{margin:0;max-width:62ch;color:var(--ink-2)}
-.lede{font-size:clamp(20px,1.6vw,23px);line-height:1.55;color:var(--ink-2)}
-em{font-style:normal;color:var(--red)}
-
-/* Etiqueta de sección: barra roja estructural + versalita */
-.label{
-  font-family:var(--fh);font-weight:700;font-size:13px;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--ink);
-  display:flex;align-items:center;gap:14px;
-}
-.label::before{content:"";width:28px;height:3px;background:var(--red);flex:none}
-
-.stack{display:flex;flex-direction:column;gap:26px}
-.gap-s{gap:14px}
-
-/* ── Nav ──────────────────────────────────────────────── */
-.nav{border-bottom:1px solid var(--rule)}
-.nav-in{
-  max-width:var(--max);margin:0 auto;padding:20px var(--gut);
-  display:flex;align-items:baseline;justify-content:space-between;gap:32px;
-}
-.logo{
-  font-family:var(--fh);font-weight:700;font-size:19px;
-  letter-spacing:.06em;text-transform:uppercase;
-}
-.logo b{color:var(--red);font-weight:700}
-.nav-links{
-  list-style:none;margin:0;padding:0;display:flex;
-  gap:clamp(16px,2.6vw,34px);
-  font-family:var(--fh);font-size:15px;letter-spacing:.12em;text-transform:uppercase;
+.mark{font-family:var(--fs);font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase}
+.nav ul{
+  list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;
+  gap:clamp(14px,2.4vw,32px);font-size:clamp(15px,1.4vw,19px);
 }
 
-/* ── Botones y enlaces de acción ──────────────────────── */
+/* ── Etiqueta serif itálica ── */
+.lab{font-family:var(--fd);font-style:italic;font-size:clamp(20px,2.3vw,31px);line-height:1.1;display:inline-block}
+.lab.u{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+
+/* ── Titular de sección (grotesca bold), para los bloques
+      que el diseño no traía y que la web sí tiene ── */
+.hd{
+  font-family:var(--fs);font-weight:700;
+  font-size:clamp(26px,4.2vw,64px);line-height:.98;
+  letter-spacing:-.025em;text-transform:uppercase;text-wrap:balance;
+  margin-top:.34em;max-width:18ch;
+}
+.sub{margin-top:1.1em}
+
+/* ── HERO ── */
+.hero{padding-block:clamp(30px,5vh,58px) clamp(48px,9vh,110px);overflow:hidden}
+.hero-mail{margin-bottom:clamp(10px,2vh,22px)}
+.hero-type{position:relative;z-index:2;pointer-events:none}
+.disp-cut{overflow:hidden;width:46%;display:block}
+.disp{
+  font-family:var(--fd);font-size:clamp(64px,17vw,286px);line-height:.78;
+  letter-spacing:-.02em;text-transform:uppercase;display:block;white-space:nowrap;
+}
+/* El retrato se coloca con retícula, no con JS: ocupa la columna derecha
+   de la fila inferior, así nunca cruza el bloque de tipo a ninguna anchura */
+.hero-lower{
+  display:grid;grid-template-columns:minmax(0,1fr) min(44%,680px);
+  gap:clamp(24px,4vw,64px);align-items:start;
+  margin-top:clamp(26px,5vh,64px);
+}
+.hero-copy{display:flex;flex-direction:column;gap:1.1em;max-width:44ch}
+.hero-copy p{max-width:none}
+/* Encuadre fijo: el retrato se recorta al alto de la columna sin perder la cara */
+.hero-img{overflow:hidden;height:min(58vh,520px)}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center 22%;filter:grayscale(1) contrast(1.03)}
 .cta{
-  display:inline-flex;align-items:center;gap:12px;
-  font-family:var(--fh);font-weight:700;font-size:16px;
-  letter-spacing:.14em;text-transform:uppercase;
-  background:var(--red);color:#fff;padding:17px 26px;border:0;cursor:pointer;
-  align-self:flex-start;max-width:100%;
-}
-.cta:hover{background:var(--ink);color:#fff}
-.lnk{
-  display:inline-block;font-family:var(--fh);font-weight:700;font-size:14px;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--ink);
-  border-bottom:2px solid var(--red);padding-bottom:3px;
-}
-.lnk:hover{color:var(--red)}
-
-/* ── Hero — retícula asimétrica: texto + retrato ──────── */
-.hero{padding:clamp(64px,10vw,130px) 0 clamp(56px,8vw,104px)}
-.hero-grid{
-  display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);
-  gap:clamp(28px,5vw,72px);align-items:start;
-}
-/* El manifiesto entra grande: es el arranque, no una etiqueta de sección.
-   A más cuerpo, menos tracking, y la barra roja escala con él. */
-.hero .label{font-size:clamp(24px,3.6vw,44px);letter-spacing:.10em;gap:clamp(14px,1.6vw,22px)}
-.hero .label::before{width:clamp(34px,4.4vw,60px);height:4px}
-.hero h1{margin:14px 0 0;max-width:15ch}
-.hero h1 .dim{color:var(--mute);display:block}
-.hero h1 .hit{display:block}
-.hero-portrait{
-  width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;object-position:center 20%;
-  filter:grayscale(1) contrast(1.04);border-top:3px solid var(--red);
+  font-family:var(--fs);font-size:19px;color:var(--ink);background:none;border:0;
+  padding:0;text-decoration:underline;text-underline-offset:5px;
+  text-decoration-thickness:1px;align-self:flex-start;
 }
 
-/* Cifras */
-.stats{
+/* ── Cifras ── */
+.nums{
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:clamp(16px,3vw,40px);margin-top:clamp(40px,6vw,76px);
-  padding-top:30px;border-top:1px solid var(--rule);
+  gap:clamp(20px,3vw,56px);padding:clamp(40px,7vh,88px) 0 0;
 }
-.stat .n{
-  font-family:var(--fh);font-weight:var(--hw);font-size:clamp(40px,4.6vw,62px);
-  line-height:1;letter-spacing:var(--htr);display:block;
-}
-.stat .t{font-size:16px;line-height:1.4;color:var(--mute);margin-top:9px;display:block;max-width:20ch}
+.hero-left .nums{padding-top:clamp(28px,5vh,60px)}
+.num .v{font-family:var(--fd);font-size:clamp(46px,6vw,104px);line-height:.86;display:block}
+.num .k{font-size:17px;line-height:1.35;margin-top:.5em;display:block;max-width:22ch}
 
-/* ── Cabecera de sección: label + h2 en retícula ──────── */
-.head{
-  display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);
-  gap:clamp(24px,4vw,64px);align-items:end;
-}
-.head .lede{padding-bottom:6px}
+/* ── Titulares apilados ── */
+.stack{margin-top:clamp(34px,6vh,76px);padding:0;margin-left:0;display:flex;flex-direction:column;list-style:none}
+.stack li{font-weight:700;font-size:clamp(26px,4.6vw,74px);line-height:.98;letter-spacing:-.025em;text-transform:uppercase;text-wrap:balance}
 
-/* ── Señales — retícula estricta, solo hairlines ──────── */
-.signals{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  margin-top:clamp(44px,6vw,80px);
-  border-top:1px solid var(--rule-2);border-left:1px solid var(--rule);
-}
-.sig{
-  padding:clamp(22px,2.6vw,34px);
-  border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
-  display:flex;flex-direction:column;gap:16px;
-}
-.sig .n{font-family:var(--fh);font-weight:700;font-size:14px;letter-spacing:.18em;color:var(--red)}
-.sig p{font-size:18px;line-height:1.45}
+/* ── Banda de imágenes + titular solapado ── */
+.band{position:relative;margin-top:clamp(30px,6vh,74px)}
+.band-imgs{display:grid;grid-template-columns:repeat(12,1fr);align-items:start;gap:0 clamp(8px,1.6vw,26px)}
+.band-imgs>div{position:relative;overflow:hidden}
+.band-imgs img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(1.46) contrast(.66)}
+.b1{grid-column:1/4;aspect-ratio:4/3}
+.b2{grid-column:5/8;aspect-ratio:16/11;margin-top:clamp(10px,2.4vw,44px)}
+.b3{grid-column:9/11;aspect-ratio:3/4;margin-top:clamp(4px,1vw,18px)}
+.b4{grid-column:11/13;aspect-ratio:4/3;margin-top:clamp(16px,3.4vw,62px)}
+.band .stack{position:relative;z-index:3;margin-top:clamp(-190px,-9vw,-58px);pointer-events:none}
+.band .stack li{font-size:clamp(28px,5.6vw,92px);line-height:.94}
+/* Las cuatro frases son largas: bajan de cuerpo para que la banda siga
+   leyéndose como un bloque y no como cuatro pantallas de texto */
+.band .stack.long li{font-size:clamp(22px,3.4vw,54px);line-height:1.02;margin-bottom:.22em}
 
-/* ── Servicios ────────────────────────────────────────── */
-.svcs{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  margin-top:clamp(44px,6vw,80px);border-top:1px solid var(--rule-2);
-}
-.svc{
-  padding:clamp(28px,3vw,42px) clamp(20px,3vw,44px) clamp(28px,3vw,42px) 0;
-  display:flex;flex-direction:column;gap:18px;
-}
-.svc+.svc{border-left:1px solid var(--rule);padding-left:clamp(20px,3vw,44px)}
-.svc .bar{width:44px;height:4px;background:var(--red)}
-.svc .det{
-  font-family:var(--fh);font-weight:700;font-size:14px;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--mute);
-  margin-top:auto;padding-top:18px;border-top:1px solid var(--rule);
+/* ── Filas meta / título ── */
+.rows{margin-top:clamp(38px,6vh,84px);display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:clamp(90px,13vw,190px) minmax(0,1fr);gap:clamp(16px,3vw,52px);padding:clamp(16px,2.4vh,26px) 0;align-items:baseline}
+.row .m{font-size:14px;line-height:1.3;padding-top:.55em}
+.row .t{font-size:clamp(24px,3.4vw,46px);line-height:1.08;letter-spacing:-.015em;display:block}
+.row p{font-size:19px;margin-top:.7em;color:var(--ink)}
+.row ul{margin:.7em 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.4em}
+.row li{font-size:19px;line-height:1.4}
+.row li::before{content:"— ";}
+
+/* ── Sticky: imagen fija + texto que pasa ── */
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,88px);align-items:start}
+.split-sticky{position:sticky;top:96px}
+.split-sticky img{filter:grayscale(1) contrast(1.03)}
+.split-txt{display:flex;flex-direction:column;gap:1.15em;padding-top:clamp(4px,1vh,12px)}
+.split-txt .nums{padding-top:clamp(20px,3vh,44px)}
+
+/* ── Cita ── */
+/* El diseño reservaba este hueco para una frase corta; la reseña real tiene
+   45 palabras, así que ocupa el ancho de la columna y baja de cuerpo */
+.quote{margin-top:clamp(44px,8vh,104px);max-width:none}
+.quote p{font-family:var(--fd);font-size:clamp(23px,2.5vw,40px);line-height:1.12;max-width:none}
+.quote cite{font-family:var(--fs);font-style:normal;font-size:14px;display:block;margin-top:1.4em}
+
+/* ── Sectores: el gesto tipográfico de la marquesina, estático ── */
+.mq{margin-top:clamp(40px,7vh,92px)}
+.mq-t{display:flex;flex-wrap:wrap;align-items:baseline}
+.mq-t span{font-family:var(--fd);font-size:clamp(26px,3.6vw,54px);line-height:1.15;padding-right:.55em}
+.mq-t span i{font-style:italic;opacity:.42;padding-left:.55em}
+.mq-note{font-size:15px;margin-top:1.6em}
+
+/* ── Contacto ── */
+.end{padding-block:clamp(68px,12vh,152px) clamp(40px,7vh,80px)}
+.end-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:start}
+.end h2{font-family:var(--fs);font-weight:700;font-size:clamp(30px,5.2vw,84px);line-height:.98;letter-spacing:-.025em;text-transform:uppercase}
+.end-links{display:flex;flex-wrap:wrap;gap:6px;font-size:clamp(17px,1.7vw,22px);margin-top:clamp(26px,4vh,52px)}
+.fine{font-size:13px;margin-top:clamp(44px,8vh,96px);display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between}
+.fine ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 20px}
+
+@media(max-width:880px){
+  body{font-size:18px}
+  .hero-lower{grid-template-columns:minmax(0,1fr)}
+  .hero-img{width:76%;max-height:none;margin-left:auto}
+  .hero-copy{max-width:none}
+  /* En una columna el eco recortado se repetiría entero y leería como error */
+  .disp-cut{display:none}
+  .disp{white-space:normal}
+  .nums,.split,.end-grid{grid-template-columns:minmax(0,1fr)}
+  .split-sticky{position:static}
+  .split-sticky img{max-width:66%}
+  .row{grid-template-columns:minmax(0,1fr);gap:2px}
+  .row .m{padding-top:0}
+  .band-imgs{gap:0 10px}
+  .b1{grid-column:1/7;aspect-ratio:4/3}
+  .b2{grid-column:8/13;margin-top:22px}
+  .b3{grid-column:1/5;margin-top:14px}
+  .b4{grid-column:6/11;margin-top:26px}
+  .band .stack{margin-top:clamp(-64px,-8vw,-26px)}
+  .nav ul{gap:14px}
 }
 
-/* ── Proceso ──────────────────────────────────────────── */
-.proc{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  margin-top:clamp(44px,6vw,80px);border-top:3px solid var(--red);
-}
-.stp{
-  padding:clamp(24px,2.8vw,38px) clamp(20px,3vw,40px) clamp(24px,2.8vw,38px) 0;
-  display:flex;flex-direction:column;gap:14px;
-}
-.stp+.stp{border-left:1px solid var(--rule);padding-left:clamp(20px,3vw,40px)}
-.stp .wk{
-  font-family:var(--fh);font-weight:700;font-size:14px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--red);
-}
-.stp p{font-size:17.5px;line-height:1.5;color:var(--mute)}
-
-/* ── Primeros 90 días ─────────────────────────────────── */
-.days{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  margin-top:clamp(44px,6vw,80px);border-top:1px solid var(--rule-2);
-}
-.day{
-  padding:clamp(24px,2.8vw,38px) clamp(20px,3vw,40px) clamp(24px,2.8vw,38px) 0;
-  display:flex;flex-direction:column;gap:14px;
-}
-.day+.day{border-left:1px solid var(--rule);padding-left:clamp(20px,3vw,40px)}
-.day .per{
-  font-family:var(--fh);font-weight:700;font-size:14px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--red);
-}
-.day ul{list-style:none;margin:6px 0 0;padding:0}
-.day li{
-  font-size:17px;line-height:1.45;color:var(--mute);
-  padding:13px 0;border-top:1px solid var(--rule);
-}
-.day li:last-child{padding-bottom:0}
-
-/* ── FAQ — abierta, sin acordeón (cero movimiento) ────── */
-.faq{margin-top:clamp(44px,6vw,80px);border-top:1px solid var(--rule-2)}
-.qa{
-  display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
-  gap:clamp(16px,3vw,48px);padding:26px 0;border-bottom:1px solid var(--rule);
-}
-.qa h4{font-size:clamp(18px,1.6vw,21px);line-height:1.3;font-weight:var(--hw)}
-.qa p{font-size:17.5px;color:var(--mute)}
-
-/* ── Resultados: cita + sectores ──────────────────────── */
-.quote{
-  margin-top:clamp(40px,6vw,72px);border-left:3px solid var(--red);
-  padding:4px 0 4px clamp(22px,3vw,38px);max-width:74ch;
-}
-.quote p{font-size:clamp(21px,2.2vw,28px);line-height:1.45;color:var(--ink);max-width:none}
-.quote cite{
-  display:block;margin-top:20px;font-family:var(--fh);font-weight:700;
-  font-size:13px;letter-spacing:.18em;text-transform:uppercase;
-  font-style:normal;color:var(--mute);
-}
-.quote .lnk{margin-top:22px}
-.sectors{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(32px,4vw,48px)}
-.sec{
-  font-family:var(--fh);font-weight:500;font-size:15px;
-  letter-spacing:.1em;text-transform:uppercase;
-  padding:9px 15px;border:1px solid var(--rule-2);color:var(--mute);
-}
-.sec.on{border-color:var(--red);color:var(--ink)}
-
-/* ── Contenido / publicaciones ────────────────────────── */
-.posts{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  margin-top:clamp(44px,6vw,80px);
-  border-top:1px solid var(--rule-2);border-left:1px solid var(--rule);
-}
-.post{
-  padding:clamp(24px,2.8vw,38px);
-  border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
-  display:flex;flex-direction:column;gap:14px;
-}
-.post .tag{
-  font-family:var(--fh);font-weight:700;font-size:13px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--red);
-}
-.post p{font-size:19px;line-height:1.45;color:var(--ink)}
-
-/* ── Contacto ─────────────────────────────────────────── */
-.contact h2{max-width:16ch}
-.contact-grid{
-  display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);
-  gap:clamp(28px,5vw,72px);align-items:end;
-}
-.contact-meta{
-  font-family:var(--fh);font-size:16px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--mute);display:flex;flex-direction:column;gap:10px;
-}
-.contact-meta b{color:var(--ink);font-weight:700}
-
-/* ── Footer ───────────────────────────────────────────── */
-.foot{border-top:1px solid var(--rule-2);padding:34px 0 46px}
-.foot-in{
-  max-width:var(--max);margin:0 auto;padding:0 var(--gut);
-  display:flex;flex-wrap:wrap;gap:18px 40px;
-  align-items:baseline;justify-content:space-between;
-}
-.foot-links{
-  list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:22px;
-  font-family:var(--fh);font-size:14px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--mute);
-}
-.foot-copy{font-size:14px;color:var(--mute)}
-
-/* ── Móvil: la retícula colapsa a una columna sin apretar ─ */
-@media(max-width:860px){
-  .hero-grid,.head,.qa,.contact-grid{grid-template-columns:minmax(0,1fr)}
-  .hero-portrait{max-width:340px}
-  .svcs,.proc,.signals,.days,.posts{grid-template-columns:minmax(0,1fr);border-left:0}
-  .svc+.svc,.stp+.stp,.day+.day{border-left:0;border-top:1px solid var(--rule);padding-left:0}
-  .svc,.stp,.day{padding-right:0}
-  .sig,.post{border-right:0}
-  .stats{grid-template-columns:minmax(0,1fr);gap:26px}
-  .nav-links{display:none}
-  .cta{padding:16px 20px;letter-spacing:.1em}
-  .lnk,.sec{letter-spacing:.1em}
-  /* Menos tracking y barra más corta: el manifiesto cabe en una línea
-     aunque no haya cargado la condensada. */
-  .hero .label{letter-spacing:.04em;gap:12px}
-  .hero .label::before{width:26px}
+@media print{
+  .nav{position:static}
+  .split-sticky{position:static}
+  body{background:#fff}
 }
   </style>
 </head>
@@ -330,308 +224,271 @@ em{font-style:normal;color:var(--red)}
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<!-- ── NAV ──────────────────────────────────────────────── -->
-<header class="nav">
-  <div class="nav-in">
-    <a class="logo" href="#top"><b>MAL</b>·MARKETING</a>
-    <ul class="nav-links">
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#como-trabajo">Proceso</a></li>
-      <li><a href="#resultados">Resultados</a></li>
-      <li><a href="/restaurantes">Restaurantes</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-  </div>
-</header>
+<nav class="nav">
+  <a class="mark" href="#top">MAL·MARKETING</a>
+  <ul>
+    <li><a href="#como-trabajo">Proceso</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#resultados">Resultados</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="/restaurantes">Restaurantes</a></li>
+    <li><a class="u" href="https://calendly.com/chemabedmar/30min" target="_blank" rel="noopener">Reservar llamada</a></li>
+  </ul>
+</nav>
 
-<main id="top" class="wrap">
+<main id="top">
 
-  <!-- ── HERO ───────────────────────────────────────────── -->
-  <section class="hero">
-    <div class="hero-grid">
-      <div class="stack">
-        <span class="label">Esto no es para ti</span>
-        <h1><span class="dim">Si tu marketing</span><span class="dim">no empieza por</span><span class="hit"><em>escuchar</em>.</span></h1>
-        <p class="lede">Si en cambio crees que el marketing es estrategia y que las personas importan más que los algoritmos, sigue leyendo.</p>
-        <p>Llevo más de 25 años haciendo marketing que empieza escuchando, no publicando. CMO interino para empresas que quieren crecer sin perder de vista a las personas.</p>
-        <a class="cta" href="https://calendly.com/chemabedmar/30min" target="_blank" rel="noopener">Hablemos — 30 min sin compromiso</a>
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <section class="hero s-a wrap">
+    <span class="lab hero-mail">Esto no es para ti</span>
+    <div class="hero-type">
+      <span class="disp">Escuchar</span>
+      <span class="disp-cut"><span class="disp">Escuchar</span></span>
+    </div>
+    <div class="hero-lower">
+      <div class="hero-left">
+        <div class="hero-copy">
+          <p>Si en cambio crees que el marketing es estrategia y que las personas importan más que los algoritmos, sigue leyendo.</p>
+          <p>Llevo más de 25 años haciendo marketing que empieza escuchando, no publicando. CMO interino para empresas que quieren crecer sin perder de vista a las personas.</p>
+          <a class="cta" href="https://calendly.com/chemabedmar/30min" target="_blank" rel="noopener">Hablemos — 30 min sin compromiso</a>
+          <a class="cta" href="#como-trabajo">Ver cómo trabajo ↓</a>
+        </div>
+        <div class="nums">
+          <div class="num"><span class="v">+25</span><span class="k">años en producto y marca</span></div>
+          <div class="num"><span class="v">5</span><span class="k">sectores con resultados</span></div>
+          <div class="num"><span class="v">+30</span><span class="k">lanzamientos de proyectos</span></div>
+        </div>
       </div>
-      <img class="hero-portrait" src="assets/hero-portrait.jpg" alt="Retrato de Chema Bedmar" width="1600" height="2400">
-    </div>
-    <div class="stats">
-      <div class="stat"><span class="n">+25</span><span class="t">años en producto y marca</span></div>
-      <div class="stat"><span class="n">5</span><span class="t">sectores con resultados</span></div>
-      <div class="stat"><span class="n">+30</span><span class="t">lanzamientos de proyectos</span></div>
-    </div>
-  </section>
-
-  <!-- ── SEÑALES / PARA QUIÉN NO ES ─────────────────────── -->
-  <section class="sect" id="senales">
-    <div class="head">
-      <div class="stack gap-s">
-        <span class="label">¿Te suena familiar?</span>
-        <h2>Señales de que tu empresa<br>necesita un CMO interino <em>ahora</em>.</h2>
-      </div>
-      <p class="lede">No hace falta estar en crisis. Estas situaciones son exactamente para las que existe este modelo.</p>
-    </div>
-
-    <div class="signals">
-      <div class="sig"><span class="n">01</span><p>El CEO dedica más de 5 horas a la semana a coordinar marketing.</p></div>
-      <div class="sig"><span class="n">02</span><p>Has cambiado de agencia dos veces en los últimos 18 meses.</p></div>
-      <div class="sig"><span class="n">03</span><p>Tu equipo ejecuta bien pero nadie define la estrategia.</p></div>
-      <div class="sig"><span class="n">04</span><p>Estás creciendo en ventas pero no sabes por qué ni cómo repetirlo.</p></div>
-      <div class="sig"><span class="n">05</span><p>Lanzas producto o servicios sin saber si funcionan.</p></div>
-      <div class="sig"><span class="n">06</span><p>Tu marketing y tus ventas van por caminos distintos.</p></div>
+      <div class="hero-img"><img src="assets/hero-portrait.jpg" alt="Chema Bedmar" width="1600" height="2400"></div>
     </div>
   </section>
 
-  <!-- ── SERVICIOS ──────────────────────────────────────── -->
-  <section class="sect" id="servicios">
-    <div class="head">
-      <div class="stack gap-s">
-        <span class="label">Servicios</span>
-        <h2>Dos formas de<br><em>trabajar juntos.</em></h2>
+  <!-- ── PARA QUIÉN NO ES ─────────────────────────────── -->
+  <section class="s-b pad wrap" id="para-quien">
+    <span class="lab u">Esto no es para ti</span>
+    <div class="band">
+      <div class="band-imgs">
+        <div class="b1"><img src="assets/plate-07.jpg" alt=""></div>
+        <div class="b2"><img src="assets/plate-01.jpg" alt=""></div>
+        <div class="b3"><img src="assets/plate-02.jpg" alt=""></div>
+        <div class="b4"><img src="assets/plate-03.jpg" alt=""></div>
       </div>
-    </div>
-    <div class="svcs">
-      <div class="svc">
-        <div class="bar"></div>
-        <h3>CMO Interino</h3>
-        <p>Dirección de marketing estratégico para empresas medianas. Entro, escucho, construyo el plan y lo ejecuto contigo. Sin agencia intermediaria. Sin PowerPoint sin acción detrás.</p>
-        <div class="det">Lunes a jueves · Dedicación parcial o total · Mínimo 3 meses</div>
-      </div>
-      <div class="svc">
-        <div class="bar"></div>
-        <h3>Mentoring para juniors</h3>
-        <p>Grupos de máximo 5 personas. Todo mi conocimiento y mis herramientas para que aprendan a diferenciarse donde la IA no puede llegar: la conexión humana real con el cliente.</p>
-        <div class="det">Viernes · Grupos cerrados · Convocatoria trimestral</div>
-      </div>
+      <ul class="stack long">
+        <li>Si diseñas la solución antes de entender la necesidad.</li>
+        <li>Si mides el éxito en likes y no en negocio.</li>
+        <li>Si confundes digitalización con estrategia.</li>
+        <li>Si buscas una agencia que ejecute sin opinar.</li>
+      </ul>
     </div>
   </section>
 
-  <!-- ── CÓMO TRABAJO ───────────────────────────────────── -->
-  <section class="sect" id="como-trabajo">
-    <div class="head">
-      <div class="stack gap-s">
-        <span class="label">Cómo trabajo</span>
-        <h2>Sin onboarding interminable.<br><em>Resultados en 30 días.</em></h2>
-      </div>
-      <p class="lede">La mayoría de consultores tardan 3 meses en entregar el primer plan. Yo entro, escucho y tengo diagnóstico en una semana.</p>
+  <!-- ── SEÑALES ──────────────────────────────────────── -->
+  <section class="s-a pad wrap" id="senales">
+    <span class="lab u">¿Te suena familiar?</span>
+    <h2 class="hd">Señales de que tu empresa necesita un CMO interino ahora.</h2>
+    <p class="sub">No hace falta estar en crisis. Estas situaciones son exactamente para las que existe este modelo.</p>
+    <div class="rows">
+      <div class="row"><span class="m">Señal 01</span><span class="t">El CEO dedica más de 5 horas a la semana a coordinar marketing.</span></div>
+      <div class="row"><span class="m">Señal 02</span><span class="t">Has cambiado de agencia dos veces en los últimos 18 meses.</span></div>
+      <div class="row"><span class="m">Señal 03</span><span class="t">Tu equipo ejecuta bien pero nadie define la estrategia.</span></div>
+      <div class="row"><span class="m">Señal 04</span><span class="t">Estás creciendo en ventas pero no sabes por qué ni cómo repetirlo.</span></div>
+      <div class="row"><span class="m">Señal 05</span><span class="t">Lanzas producto o servicios sin saber si funcionan.</span></div>
+      <div class="row"><span class="m">Señal 06</span><span class="t">Tu marketing y tus ventas van por caminos distintos.</span></div>
     </div>
+  </section>
 
-    <div class="proc">
-      <div class="stp">
-        <span class="wk">Semana 1</span>
-        <h3>Diagnóstico</h3>
-        <p>Escucho antes de tocar nada. Entrevisto al equipo, reviso lo que hay y entiendo qué está fallando de verdad y por qué. Sin suposiciones.</p>
+  <!-- ── SERVICIOS ────────────────────────────────────── -->
+  <section class="s-c pad wrap" id="servicios">
+    <span class="lab u">Servicios</span>
+    <h2 class="hd">Dos formas de trabajar juntos.</h2>
+    <div class="rows">
+      <div class="row">
+        <span class="m">Lunes a jueves · Dedicación parcial o total · Mínimo 3 meses</span>
+        <div><span class="t">CMO Interino</span><p>Dirección de marketing estratégico para empresas medianas. Entro, escucho, construyo el plan y lo ejecuto contigo. Sin agencia intermediaria. Sin PowerPoint sin acción detrás.</p></div>
       </div>
-      <div class="stp">
-        <span class="wk">Mes 1</span>
-        <h3>Plan y prioridades</h3>
-        <p>Defino qué hacer, en qué orden y qué no hacer. Sin PowerPoint de 60 páginas. Un documento accionable con KPIs claros desde el primer día.</p>
-      </div>
-      <div class="stp">
-        <span class="wk">Mes 2–3+</span>
-        <h3>Ejecución y ajuste</h3>
-        <p>Ejecutamos. Medimos. Ajustamos. Esto no es un proyecto, es un proceso continuo de escucha, aprendizaje y adaptación permanente.</p>
+      <div class="row">
+        <span class="m">Viernes · Grupos cerrados · Convocatoria trimestral</span>
+        <div><span class="t">Mentoring para juniors</span><p>Grupos de máximo 5 personas. Todo mi conocimiento y mis herramientas para que aprendan a diferenciarse donde la IA no puede llegar: la conexión humana real con el cliente.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ── PRIMEROS 90 DÍAS ───────────────────────────────── -->
-  <section class="sect" id="noventa-dias">
-    <div class="head">
-      <div class="stack gap-s">
-        <span class="label">Qué esperar</span>
-        <h2>Los primeros 90 días<br><em>contigo.</em></h2>
+  <!-- ── CÓMO TRABAJO ─────────────────────────────────── -->
+  <section class="s-b pad wrap" id="como-trabajo">
+    <span class="lab u">Cómo trabajo</span>
+    <div class="band">
+      <div class="band-imgs">
+        <div class="b2" style="grid-column:1/4;margin-top:0"><img src="assets/plate-04.jpg" alt=""></div>
+        <div class="b3" style="grid-column:6/8"><img src="assets/plate-05.jpg" alt=""></div>
+        <div class="b4" style="grid-column:10/13"><img src="assets/plate-06.jpg" alt=""></div>
       </div>
-      <p class="lede">Sin sorpresas. Esto es lo que ocurre exactamente desde que empezamos a trabajar juntos.</p>
+      <ul class="stack">
+        <li>Sin onboarding interminable.</li>
+        <li>Resultados en 30 días.</li>
+      </ul>
     </div>
+    <p class="sub">La mayoría de consultores tardan 3 meses en entregar el primer plan. Yo entro, escucho y tengo diagnóstico en una semana.</p>
+    <div class="rows">
+      <div class="row"><span class="m">Semana 1</span><div><span class="t">Diagnóstico</span><p>Escucho antes de tocar nada. Entrevisto al equipo, reviso lo que hay y entiendo qué está fallando de verdad y por qué. Sin suposiciones.</p></div></div>
+      <div class="row"><span class="m">Mes 1</span><div><span class="t">Plan y prioridades</span><p>Defino qué hacer, en qué orden y qué no hacer. Sin PowerPoint de 60 páginas. Un documento accionable con KPIs claros desde el primer día.</p></div></div>
+      <div class="row"><span class="m">Mes 2–3+</span><div><span class="t">Ejecución y ajuste</span><p>Ejecutamos. Medimos. Ajustamos. Esto no es un proyecto, es un proceso continuo de escucha, aprendizaje y adaptación permanente.</p></div></div>
+    </div>
+  </section>
 
-    <div class="days">
-      <div class="day">
-        <span class="per">Mes 1 — Escuchar</span>
-        <h3>Diagnóstico sin filtros</h3>
-        <ul>
-          <li>Entrevistas con equipo, ventas y clientes actuales</li>
-          <li>Auditoría completa de lo que hay hecho</li>
-          <li>Análisis de competidores directos</li>
-          <li>Diagnóstico escrito con prioridades claras</li>
-        </ul>
+  <!-- ── PRIMEROS 90 DÍAS ─────────────────────────────── -->
+  <section class="s-a pad wrap" id="noventa-dias">
+    <span class="lab u">Qué esperar</span>
+    <h2 class="hd">Los primeros 90 días contigo.</h2>
+    <p class="sub">Sin sorpresas. Esto es lo que ocurre exactamente desde que empezamos a trabajar juntos.</p>
+    <div class="rows">
+      <div class="row">
+        <span class="m">Mes 1 — Escuchar</span>
+        <div><span class="t">Diagnóstico sin filtros</span>
+          <ul>
+            <li>Entrevistas con equipo, ventas y clientes actuales</li>
+            <li>Auditoría completa de lo que hay hecho</li>
+            <li>Análisis de competidores directos</li>
+            <li>Diagnóstico escrito con prioridades claras</li>
+          </ul>
+        </div>
       </div>
-      <div class="day">
-        <span class="per">Mes 2 — Construir</span>
-        <h3>Plan y primeras acciones</h3>
-        <ul>
-          <li>Estrategia de marca y posicionamiento</li>
-          <li>Plan de canales y contenidos</li>
-          <li>Quick wins identificados y ejecutados</li>
-          <li>KPIs definidos y dashboard activo</li>
-        </ul>
+      <div class="row">
+        <span class="m">Mes 2 — Construir</span>
+        <div><span class="t">Plan y primeras acciones</span>
+          <ul>
+            <li>Estrategia de marca y posicionamiento</li>
+            <li>Plan de canales y contenidos</li>
+            <li>Quick wins identificados y ejecutados</li>
+            <li>KPIs definidos y dashboard activo</li>
+          </ul>
+        </div>
       </div>
-      <div class="day">
-        <span class="per">Mes 3 — Escalar</span>
-        <h3>Tracción y ajuste</h3>
-        <ul>
-          <li>Revisión de resultados vs. objetivos</li>
-          <li>Ajuste de lo que no está funcionando</li>
-          <li>Equipo interno más autónomo</li>
-          <li>Decisión: continuar, escalar o transferir</li>
-        </ul>
+      <div class="row">
+        <span class="m">Mes 3 — Escalar</span>
+        <div><span class="t">Tracción y ajuste</span>
+          <ul>
+            <li>Revisión de resultados vs. objetivos</li>
+            <li>Ajuste de lo que no está funcionando</li>
+            <li>Equipo interno más autónomo</li>
+            <li>Decisión: continuar, escalar o transferir</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ── FAQ ────────────────────────────────────────────── -->
-  <section class="sect" id="faq">
-    <div class="head">
-      <div class="stack gap-s">
-        <span class="label">Preguntas frecuentes</span>
-        <h2>Lo que me preguntan los CEOs<br><em>antes de llamar.</em></h2>
+  <!-- ── RESULTADOS ───────────────────────────────────── -->
+  <section class="s-c pad wrap" id="resultados">
+    <div class="split">
+      <div class="split-sticky"><img src="assets/hero-portrait.jpg" alt="Chema Bedmar"></div>
+      <div class="split-txt">
+        <span class="lab">Resultados</span>
+        <h2 class="hd">Números que puedo defender en una reunión.</h2>
+        <p>25 años. Varias industrias. Casos reales. No casos de estudio de PowerPoint con logos grandes y datos pequeños.</p>
+        <div class="nums">
+          <div class="num"><span class="v">+25</span><span class="k">años liderando estrategias de producto y marca en empresas reales</span></div>
+          <div class="num"><span class="v">5</span><span class="k">sectores distintos con resultados documentados y medibles</span></div>
+          <div class="num"><span class="v">+30</span><span class="k">lanzamientos de producto y proyectos de marca liderados</span></div>
+        </div>
+        <div class="quote">
+          <p>Chema es un profesional del marketing profundamente orientado al cliente, con una sólida base analítica para la toma de decisiones y una capacidad destacada para detectar oportunidades de mercado y convertirlas en acciones reales y efectivas.</p>
+          <cite>— Reseña verificada en LinkedIn</cite>
+        </div>
+        <p><a class="u" href="https://linkedin.com/in/chemabedmar" target="_blank" rel="noopener">Ver más reseñas en LinkedIn →</a></p>
       </div>
     </div>
 
-    <div class="faq">
-      <div class="qa">
-        <h4>¿Cuánto tiempo necesitas para saber si puedes ayudarnos?</h4>
-        <p>Una hora de conversación honesta es suficiente para saber si tiene sentido trabajar juntos. En esa llamada no vendo nada. Pregunto, escucho y te digo lo que pienso. Si no lo tiene, te lo digo directamente y te ahorro el tiempo.</p>
+    <div class="mq">
+      <span class="lab u">Experiencia sectorial</span>
+      <h2 class="hd">He trabajado en industrias donde las personas importan.</h2>
+      <p class="sub">No soy especialista de un solo sector. Eso es una ventaja: traigo perspectivas que tu competencia directa no tiene.</p>
+      <div class="mq-t" style="margin-top:clamp(28px,4vh,56px)">
+        <span>Cosmética y farmacia<i>·</i></span><span>Gran consumo<i>·</i></span><span>Interiorismo y hogar<i>·</i></span><span>Tecnología de consumo<i>·</i></span><span>Hostelería<i>·</i></span><span>Servicios B2B<i>·</i></span><span>Alimentación<i>·</i></span><span>Formación y educación</span>
       </div>
-      <div class="qa">
-        <h4>¿Puedes trabajar con el equipo de marketing que ya tenemos?</h4>
-        <p>Sí, y es lo habitual. Mi trabajo no es sustituir a tu equipo, es darle dirección y criterio. En la mayoría de casos, el equipo existente tiene más capacidad de la que se le permite usar. El problema no suele ser el equipo.</p>
+      <p class="mq-note">Los sectores destacados son los de experiencia directa con resultados documentados.</p>
+    </div>
+  </section>
+
+  <!-- ── CONTENIDO ────────────────────────────────────── -->
+  <section class="s-a pad wrap" id="contenido">
+    <span class="lab u">Esto no es para ti</span>
+    <h2 class="hd">Píldoras de experiencia real. Sin teoría de manual.</h2>
+    <p class="sub">Cada publicación parte de algo que he vivido dentro de una empresa. Casos, errores, decisiones y lo que aprendí. Sígueme en LinkedIn.</p>
+    <div class="rows">
+      <div class="row"><span class="m">Esto no es para ti</span><span class="t">Esto no es para ti si crees que el marketing se arregla con una herramienta.</span></div>
+      <div class="row"><span class="m">Esto no es para ti</span><span class="t">El peor consejo que le di a un junior fue: aprende a usar todas las herramientas.</span></div>
+      <div class="row"><span class="m">Esto no es para ti</span><span class="t">Tu empresa factura 3M€ y sigue sin director de marketing. Esto es lo que te está costando.</span></div>
+      <div class="row"><span class="m">Esto no es para ti</span><span class="t">Mercadona no tiene departamento de innovación. Tiene personas que escuchan.</span></div>
+    </div>
+    <p style="margin-top:clamp(28px,4vh,52px)"><a class="u" href="https://linkedin.com/in/chemabedmar" target="_blank" rel="noopener">Ver todas las publicaciones en LinkedIn →</a></p>
+  </section>
+
+  <!-- ── FAQ ──────────────────────────────────────────── -->
+  <section class="s-b pad wrap" id="faq">
+    <span class="lab u">Preguntas frecuentes</span>
+    <h2 class="hd">Lo que me preguntan los CEOs antes de llamar.</h2>
+    <div class="rows">
+      <div class="row">
+        <span class="m">Pregunta 01</span>
+        <div><span class="t">¿Cuánto tiempo necesitas para saber si puedes ayudarnos?</span><p>Una hora de conversación honesta es suficiente para saber si tiene sentido trabajar juntos. En esa llamada no vendo nada. Pregunto, escucho y te digo lo que pienso. Si no lo tiene, te lo digo directamente y te ahorro el tiempo.</p></div>
       </div>
-      <div class="qa">
-        <h4>¿Ejecutas tú o solo das estrategia?</h4>
-        <p>Las dos cosas, según lo que necesite la empresa. La estrategia sin ejecución es un PDF. Pero la ejecución sin estrategia es ruido. Mi trabajo es que las dos estén alineadas y que el equipo sepa exactamente qué hacer y por qué.</p>
+      <div class="row">
+        <span class="m">Pregunta 02</span>
+        <div><span class="t">¿Puedes trabajar con el equipo de marketing que ya tenemos?</span><p>Sí, y es lo habitual. Mi trabajo no es sustituir a tu equipo, es darle dirección y criterio. En la mayoría de casos, el equipo existente tiene más capacidad de la que se le permite usar. El problema no suele ser el equipo.</p></div>
       </div>
-      <div class="qa">
-        <h4>¿Trabajas con varias empresas a la vez?</h4>
-        <p>Sí, pero con un máximo claro. Trabajo de lunes a jueves con mis clientes. Nunca cojo más de lo que puedo atender con la dedicación que cada empresa merece. Cuando estoy lleno, lo digo. No hay sorpresas.</p>
+      <div class="row">
+        <span class="m">Pregunta 03</span>
+        <div><span class="t">¿Ejecutas tú o solo das estrategia?</span><p>Las dos cosas, según lo que necesite la empresa. La estrategia sin ejecución es un PDF. Pero la ejecución sin estrategia es ruido. Mi trabajo es que las dos estén alineadas y que el equipo sepa exactamente qué hacer y por qué.</p></div>
       </div>
-      <div class="qa">
-        <h4>¿Qué pasa si después de 90 días no vemos resultados?</h4>
-        <p>El marketing no es inmediato, pero los primeros indicadores sí deberían moverse en los primeros 30–60 días. Si no los vemos, revisamos juntos qué está pasando. No tengo interés en cobrar por no avanzar. Si algo no funciona, lo cambio antes que tú.</p>
+      <div class="row">
+        <span class="m">Pregunta 04</span>
+        <div><span class="t">¿Trabajas con varias empresas a la vez?</span><p>Sí, pero con un máximo claro. Trabajo de lunes a jueves con mis clientes. Nunca cojo más de lo que puedo atender con la dedicación que cada empresa merece. Cuando estoy lleno, lo digo. No hay sorpresas.</p></div>
       </div>
-      <div class="qa">
-        <h4>¿Tienes experiencia en mi sector?</h4>
-        <p>Depende del sector. Más abajo tienes los que conozco en profundidad. Si no es uno de ellos, no lo finjo. Lo que sí traigo siempre es el método: escuchar primero, datos después, hipótesis y test. Eso funciona en cualquier industria porque el comportamiento humano no cambia de sector en sector.</p>
+      <div class="row">
+        <span class="m">Pregunta 05</span>
+        <div><span class="t">¿Qué pasa si después de 90 días no vemos resultados?</span><p>El marketing no es inmediato, pero los primeros indicadores sí deberían moverse en los primeros 30–60 días. Si no los vemos, revisamos juntos qué está pasando. No tengo interés en cobrar por no avanzar. Si algo no funciona, lo cambio antes que tú.</p></div>
       </div>
-      <div class="qa">
-        <h4>¿Trabajas solo o tienes un equipo detrás?</h4>
-        <p>Trabajo solo, y eso es una ventaja. Cuando contratas a una agencia, quién habla contigo en la reunión no siempre es quien trabaja en tu cuenta. Conmigo siempre es igual: la misma persona que diagnostica es la que ejecuta y la que rinde cuentas.</p>
+      <div class="row">
+        <span class="m">Pregunta 06</span>
+        <div><span class="t">¿Tienes experiencia en mi sector?</span><p>Depende del sector. Más arriba tienes los que conozco en profundidad. Si no es uno de ellos, no lo finjo. Lo que sí traigo siempre es el método: escuchar primero, datos después, hipótesis y test. Eso funciona en cualquier industria porque el comportamiento humano no cambia de sector en sector.</p></div>
+      </div>
+      <div class="row">
+        <span class="m">Pregunta 07</span>
+        <div><span class="t">¿Trabajas solo o tienes un equipo detrás?</span><p>Trabajo solo, y eso es una ventaja. Cuando contratas a una agencia, quién habla contigo en la reunión no siempre es quien trabaja en tu cuenta. Conmigo siempre es igual: la misma persona que diagnostica es la que ejecuta y la que rinde cuentas.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ── RESULTADOS ─────────────────────────────────────── -->
-  <section class="sect" id="resultados">
-    <div class="head">
-      <div class="stack gap-s">
-        <span class="label">Resultados</span>
-        <h2>Números que puedo<br><em>defender en una reunión.</em></h2>
+  <!-- ── CONTACTO ─────────────────────────────────────── -->
+  <section class="s-c end wrap" id="contacto">
+    <div class="end-grid">
+      <div>
+        <span class="lab u">¿Hablamos?</span>
+        <h2 style="margin-top:.5em">30 minutos.<br>Sin PowerPoint.</h2>
       </div>
-      <p class="lede">25 años. Varias industrias. Casos reales. No casos de estudio de PowerPoint con logos grandes y datos pequeños.</p>
-    </div>
-
-    <div class="stats">
-      <div class="stat"><span class="n">+25</span><span class="t">años liderando estrategias de producto y marca en empresas reales</span></div>
-      <div class="stat"><span class="n">5</span><span class="t">sectores distintos con resultados documentados y medibles</span></div>
-      <div class="stat"><span class="n">+30</span><span class="t">lanzamientos de producto y proyectos de marca liderados</span></div>
-    </div>
-
-    <div class="quote">
-      <p>Chema es un profesional del marketing profundamente orientado al cliente, con una sólida base analítica para la toma de decisiones y una capacidad destacada para detectar oportunidades de mercado y convertirlas en acciones reales y efectivas.</p>
-      <cite>— Reseña verificada en LinkedIn</cite>
-      <a class="lnk" href="https://linkedin.com/in/chemabedmar" target="_blank" rel="noopener">Ver más reseñas en LinkedIn →</a>
-    </div>
-
-    <div class="head" style="margin-top:clamp(48px,7vw,92px)">
-      <div class="stack gap-s">
-        <span class="label">Experiencia sectorial</span>
-        <h3>He trabajado en industrias<br>donde las personas importan.</h3>
-      </div>
-      <p class="lede">No soy especialista de un solo sector. Eso es una ventaja: traigo perspectivas que tu competencia directa no tiene.</p>
-    </div>
-    <div class="sectors">
-      <span class="sec on">Cosmética y farmacia</span>
-      <span class="sec on">Gran consumo</span>
-      <span class="sec on">Interiorismo y hogar</span>
-      <span class="sec on">Tecnología de consumo</span>
-      <span class="sec on">Hostelería</span>
-    </div>
-
-    <p style="margin-top:clamp(28px,4vw,40px)">
-      <a class="lnk" href="/restaurantes">Consultoría para restaurantes en Alicante →</a>
-    </p>
-  </section>
-
-  <!-- ── CONTENIDO ──────────────────────────────────────── -->
-  <section class="sect" id="contenido">
-    <div class="head">
-      <div class="stack gap-s">
-        <span class="label">Esto no es para ti</span>
-        <h2>Píldoras de experiencia real.<br><em>Sin teoría de manual.</em></h2>
-      </div>
-      <p class="lede">Cada publicación parte de algo que he vivido dentro de una empresa. Casos, errores, decisiones y lo que aprendí. Sígueme en LinkedIn.</p>
-    </div>
-
-    <div class="posts">
-      <div class="post">
-        <span class="tag">Esto no es para ti</span>
-        <p>Esto no es para ti si crees que el marketing se arregla con una herramienta.</p>
-      </div>
-      <div class="post">
-        <span class="tag">Esto no es para ti</span>
-        <p>El peor consejo que le di a un junior fue: aprende a usar todas las herramientas.</p>
-      </div>
-      <div class="post">
-        <span class="tag">Esto no es para ti</span>
-        <p>Tu empresa factura 3M€ y sigue sin director de marketing. Esto es lo que te está costando.</p>
-      </div>
-      <div class="post">
-        <span class="tag">Esto no es para ti</span>
-        <p>Mercadona no tiene departamento de innovación. Tiene personas que escuchan.</p>
+      <div>
+        <p>Si algo de lo que has leído resuena, hablemos. Sin compromiso, sin formulario largo y sin presentación de agencia. Solo una llamada para ver si tiene sentido trabajar juntos.</p>
+        <div class="end-links">
+          <a class="u" href="https://calendly.com/chemabedmar/30min" target="_blank" rel="noopener">Reservar llamada</a><span>,</span>
+          <a class="u" href="https://linkedin.com/in/chemabedmar" target="_blank" rel="noopener">Escribirme en LinkedIn</a>
+        </div>
       </div>
     </div>
-
-    <p style="margin-top:clamp(28px,4vw,40px)">
-      <a class="lnk" href="https://linkedin.com/in/chemabedmar" target="_blank" rel="noopener">Ver todas las publicaciones en LinkedIn →</a>
-    </p>
-  </section>
-
-  <!-- ── CONTACTO ───────────────────────────────────────── -->
-  <section class="sect contact" id="contacto">
-    <div class="contact-grid">
-      <div class="stack">
-        <span class="label">¿Hablamos?</span>
-        <h2>30 minutos.<br><em>Sin PowerPoint.</em></h2>
-        <p class="lede">Si algo de lo que has leído resuena, hablemos. Sin compromiso, sin formulario largo y sin presentación de agencia. Solo una llamada para ver si tiene sentido trabajar juntos.</p>
-        <a class="cta" href="https://calendly.com/chemabedmar/30min" target="_blank" rel="noopener">Reservar llamada</a>
-      </div>
-      <div class="contact-meta">
-        <span>Chema Bedmar · <b>CMO Interino</b></span>
-        <span>Alicante · <b>España</b></span>
-        <span><a href="https://linkedin.com/in/chemabedmar" target="_blank" rel="noopener">LinkedIn · <b>chemabedmar</b></a></span>
-      </div>
+    <div class="fine">
+      <span>Chema Bedmar · CMO Interino · Alicante</span>
+      <ul>
+        <li><a href="#como-trabajo">Proceso</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#resultados">Resultados</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="/restaurantes">Restaurantes</a></li>
+        <li><a href="https://linkedin.com/in/chemabedmar" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+      <span>mal.marketing</span>
     </div>
   </section>
 
 </main>
-
-<!-- ── FOOTER ───────────────────────────────────────────── -->
-<footer class="foot">
-  <div class="foot-in">
-    <div class="logo"><b>MAL</b>·MARKETING</div>
-    <ul class="foot-links">
-      <li><a href="#como-trabajo">Proceso</a></li>
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#resultados">Resultados</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="https://linkedin.com/in/chemabedmar" target="_blank" rel="noopener">LinkedIn</a></li>
-    </ul>
-    <p class="foot-copy">Chema Bedmar · Alicante · mal.marketing</p>
-  </div>
-</footer>
 
 </body>
 </html>
