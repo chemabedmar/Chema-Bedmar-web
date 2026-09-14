@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Nunca ha venido tanta gente a Alicante y nunca ha sido tan fácil facturar menos. Radiografía de tu restaurante con datos reales: mystery shopping, clientes que repiten y una decisión clara.">
   <meta name="author" content="Chema Bedmar">
-  <meta name="theme-color" content="#F5F5F0">
+  <meta name="theme-color" content="#F1F1EF">
   <meta property="og:title" content="Consultoría para restaurantes en Alicante | MalMarketing — Chema Bedmar">
   <meta property="og:description" content="Nunca ha venido tanta gente a Alicante y nunca ha sido tan fácil facturar menos. Radiografía de tu restaurante con datos reales: mystery shopping, clientes que repiten y una decisión clara.">
   <meta property="og:type" content="website">
@@ -28,215 +28,164 @@
   <!-- End Google Tag Manager -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
 /* ======================================================
-   mal.marketing/restaurantes — Bauhaus sobrio
-   Mismo sistema que la home: retícula estricta, mucho aire,
-   un solo acento de color, cero ornamento, cero movimiento.
+   mal.marketing/restaurantes — rojo como única tinta
+   Mismo sistema que la home: naranja sobre papel neutro,
+   Instrument Serif en display, sin animaciones ni JS.
    ====================================================== */
 
 :root{
-  --paper:#F5F5F0;
-  --ink:#0A0A0A;
-  --ink-2:#1A1A1A;
-  --red:#D72638;
-  --rule:#D8D6CE;
-  --rule-2:#C4C1B7;
-  --mute:#5C5A54;
-
-  --fh:'Barlow Condensed','Barlow',sans-serif;
-  --fb:'Barlow',sans-serif;
-  --hw:500;
-  --htr:-.02em;
-  --hlh:1.02;
-
-  --gut:clamp(24px,5vw,88px);
-  --max:1180px;
+  --ink:#F4361C;
+  --paper:#F1F1EF;
+  --paper-2:#E6E6E4;
+  --paper-3:#EDEDEA;
+  --fd:'Instrument Serif',Times,serif;
+  --fs:'Helvetica Neue',Helvetica,'Archivo',Arial,sans-serif;
+  --gut:clamp(20px,4.6vw,64px);
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:auto}
 body{
   margin:0;background:var(--paper);color:var(--ink);
-  font-family:var(--fb);font-size:19px;line-height:1.55;
-  -webkit-font-smoothing:antialiased;
+  font-family:var(--fs);font-size:20px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 img{display:block;max-width:100%}
+p{margin:0;max-width:52ch}
+h1,h2,h3{margin:0;font-weight:400;color:var(--ink)}
+::selection{background:var(--ink);color:var(--paper)}
+
 a{color:var(--ink);text-decoration:none}
-a:hover{color:var(--red)}
-::selection{background:var(--red);color:#fff}
+a.u{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 
-.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
-.sect{padding:clamp(72px,11vw,150px) 0;border-top:1px solid var(--rule)}
+.wrap{padding:0 var(--gut)}
+section{position:relative}
+.s-a{background:var(--paper)}
+.s-b{background:var(--paper-2)}
+.s-c{background:var(--paper-3)}
+.pad{padding-block:clamp(72px,12vh,150px)}
 
-/* ── Tipografía ───────────────────────────────────────── */
-h1,h2,h3,h4{
-  font-family:var(--fh);font-weight:var(--hw);
-  letter-spacing:var(--htr);line-height:var(--hlh);
-  margin:0;color:var(--ink);
+/* ── Nav ── */
+.nav{
+  position:sticky;top:0;z-index:60;background:var(--paper);
+  padding:16px var(--gut);display:flex;align-items:baseline;
+  justify-content:space-between;gap:16px 24px;flex-wrap:wrap;
 }
-h1{font-size:clamp(42px,6.2vw,86px)}
-h2{font-size:clamp(32px,4.4vw,60px)}
-h3{font-size:clamp(21px,2.1vw,27px);line-height:1.2}
-p{margin:0;max-width:62ch;color:var(--ink-2)}
-.lede{font-size:clamp(20px,1.6vw,23px);line-height:1.55;color:var(--ink-2)}
-em{font-style:normal;color:var(--red)}
-
-.label{
-  font-family:var(--fh);font-weight:700;font-size:13px;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--ink);
-  display:flex;align-items:center;gap:14px;
-}
-.label::before{content:"";width:28px;height:3px;background:var(--red);flex:none}
-
-.stack{display:flex;flex-direction:column;gap:26px}
-.gap-s{gap:14px}
-
-/* ── Nav ──────────────────────────────────────────────── */
-.nav{border-bottom:1px solid var(--rule)}
-.nav-in{
-  max-width:var(--max);margin:0 auto;padding:20px var(--gut);
-  display:flex;align-items:baseline;justify-content:space-between;gap:32px;
-}
-.logo{
-  font-family:var(--fh);font-weight:700;font-size:19px;
-  letter-spacing:.06em;text-transform:uppercase;
-}
-.logo b{color:var(--red);font-weight:700}
-.nav-links{
-  list-style:none;margin:0;padding:0;display:flex;
-  gap:clamp(16px,2.6vw,34px);
-  font-family:var(--fh);font-size:15px;letter-spacing:.12em;text-transform:uppercase;
+.mark{font-family:var(--fs);font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase}
+.nav ul{
+  list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;
+  gap:clamp(14px,2.4vw,32px);font-size:clamp(15px,1.4vw,19px);
 }
 
-/* ── Botones ──────────────────────────────────────────── */
+/* ── Etiqueta serif itálica ── */
+.lab{font-family:var(--fd);font-style:italic;font-size:clamp(20px,2.3vw,31px);line-height:1.1;display:inline-block}
+.lab.u{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+
+/* ── Titular de sección ── */
+.hd{
+  font-family:var(--fs);font-weight:700;
+  font-size:clamp(26px,4.2vw,64px);line-height:.98;
+  letter-spacing:-.025em;text-transform:uppercase;text-wrap:balance;
+  margin-top:.34em;max-width:18ch;
+}
+.sub{margin-top:1.1em}
+
+/* ── HERO ── */
+.hero{padding-block:clamp(30px,5vh,58px) clamp(48px,9vh,110px);overflow:hidden}
+.hero-type{position:relative;z-index:2;pointer-events:none}
+.disp-cut{overflow:hidden;width:46%;display:block}
+.disp{
+  font-family:var(--fd);font-size:clamp(64px,17vw,286px);line-height:.78;
+  letter-spacing:-.02em;text-transform:uppercase;display:block;white-space:nowrap;
+}
+.hero-lower{
+  display:grid;grid-template-columns:minmax(0,1fr) min(44%,680px);
+  gap:clamp(24px,4vw,64px);align-items:start;
+  margin-top:clamp(26px,5vh,64px);
+}
+.hero-copy{display:flex;flex-direction:column;gap:1.1em;max-width:46ch}
+.hero-copy p{max-width:none}
+/* El titular del hero es largo: baja de cuerpo y ensancha para no
+   convertirse en una columna de ocho líneas junto al display */
+.hero-copy .hd{margin-top:0;max-width:26ch;font-size:clamp(24px,3.2vw,50px)}
+.hero-img{overflow:hidden;height:min(52vh,460px)}
+.hero-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.03)}
 .cta{
-  display:inline-flex;align-items:center;gap:12px;
-  font-family:var(--fh);font-weight:700;font-size:16px;
-  letter-spacing:.14em;text-transform:uppercase;
-  background:var(--red);color:#fff;padding:17px 26px;border:0;cursor:pointer;
-  align-self:flex-start;max-width:100%;
+  font-family:var(--fs);font-size:19px;color:var(--ink);background:none;border:0;
+  padding:0;text-decoration:underline;text-underline-offset:5px;
+  text-decoration-thickness:1px;align-self:flex-start;
 }
-.cta:hover{background:var(--ink);color:#fff}
 
-/* ── Cabecera de sección ──────────────────────────────── */
-.head{
-  display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);
-  gap:clamp(24px,4vw,64px);align-items:end;
-}
-.head .lede{padding-bottom:6px}
+/* ── Titulares apilados ── */
+.stack{margin-top:clamp(34px,6vh,76px);padding:0;margin-left:0;display:flex;flex-direction:column;list-style:none}
+.stack li{font-weight:700;font-size:clamp(26px,4.6vw,74px);line-height:.98;letter-spacing:-.025em;text-transform:uppercase;text-wrap:balance}
 
-/* ── Hero ─────────────────────────────────────────────── */
-.hero{padding:clamp(64px,10vw,130px) 0 clamp(56px,8vw,104px)}
-.hero h1{max-width:17ch}
+/* ── Banda de imágenes + titular solapado ── */
+.band{position:relative;margin-top:clamp(30px,6vh,74px)}
+.band-imgs{display:grid;grid-template-columns:repeat(12,1fr);align-items:start;gap:0 clamp(8px,1.6vw,26px)}
+.band-imgs>div{position:relative;overflow:hidden}
+.band-imgs img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(1.46) contrast(.66)}
+.b2{grid-column:1/4;aspect-ratio:16/11}
+.b3{grid-column:6/8;aspect-ratio:3/4;margin-top:clamp(4px,1vw,18px)}
+.b4{grid-column:10/13;aspect-ratio:4/3;margin-top:clamp(16px,3.4vw,62px)}
+.band .stack{position:relative;z-index:3;margin-top:clamp(-190px,-9vw,-58px);pointer-events:none}
+.band .stack li{font-size:clamp(28px,5.6vw,92px);line-height:.94}
 
-/* ── Síntomas — lista de hairlines ────────────────────── */
-.sint{
-  list-style:none;margin:clamp(44px,6vw,80px) 0 0;padding:0;
-  border-top:1px solid var(--rule-2);
-}
-.sint li{
-  font-size:19px;line-height:1.5;color:var(--ink-2);
-  padding:20px 0;border-bottom:1px solid var(--rule);max-width:70ch;
-}
-.sint-cierre{margin-top:28px;font-size:clamp(20px,1.6vw,23px);line-height:1.55;color:var(--ink)}
+/* ── Filas meta / título ── */
+.rows{margin-top:clamp(38px,6vh,84px);display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:clamp(90px,13vw,190px) minmax(0,1fr);gap:clamp(16px,3vw,52px);padding:clamp(16px,2.4vh,26px) 0;align-items:baseline}
+.row .m{font-size:14px;line-height:1.3;padding-top:.55em}
+.row .t{font-size:clamp(24px,3.4vw,46px);line-height:1.08;letter-spacing:-.015em;display:block}
+.row p{font-size:19px;margin-top:.7em;color:var(--ink)}
+.row ul{margin:.7em 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.4em}
+.row li{font-size:19px;line-height:1.4}
+.row li::before{content:"— "}
 
-/* ── Bloque destacado: barra roja estructural ─────────── */
-.note{
-  margin-top:clamp(40px,6vw,72px);border-left:3px solid var(--red);
-  padding:4px 0 4px clamp(22px,3vw,38px);max-width:74ch;
-}
-.note p{font-size:clamp(20px,1.7vw,24px);line-height:1.6;color:var(--ink);max-width:none}
+/* ── Sticky: imagen fija + texto que pasa ── */
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,88px);align-items:start}
+.split-sticky{position:sticky;top:96px}
+.split-sticky img{filter:grayscale(1) contrast(1.03)}
+.split-txt{display:flex;flex-direction:column;gap:1.15em;padding-top:clamp(4px,1vh,12px)}
 
-/* ── Creencias — retícula estricta ────────────────────── */
-.bels{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  margin-top:clamp(44px,6vw,80px);
-  border-top:1px solid var(--rule-2);border-left:1px solid var(--rule);
-}
-.bel{
-  padding:clamp(24px,2.8vw,36px);
-  border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
-  display:flex;flex-direction:column;gap:14px;
-}
-.bel .n{
-  font-family:var(--fh);font-weight:var(--hw);
-  font-size:clamp(40px,4.6vw,62px);line-height:1;
-  letter-spacing:var(--htr);color:var(--rule-2);
-}
-.bel p{font-size:17px;line-height:1.55;color:var(--mute)}
+/* ── Bloque serif destacado ── */
+.quote{margin-top:clamp(44px,8vh,104px);max-width:none}
+.quote p{font-family:var(--fd);font-size:clamp(23px,2.5vw,40px);line-height:1.12;max-width:none}
 
-/* ── Radiografía ──────────────────────────────────────── */
-.radio{
-  margin-top:clamp(44px,6vw,80px);
-  border-top:3px solid var(--red);
-  border-bottom:1px solid var(--rule);
-  padding:clamp(28px,3vw,42px) 0;
-}
-.radio ul{list-style:none;margin:clamp(24px,3vw,34px) 0 0;padding:0;border-top:1px solid var(--rule)}
-.radio li{
-  font-size:18px;line-height:1.5;color:var(--mute);
-  padding:16px 0;border-bottom:1px solid var(--rule);max-width:70ch;
-}
-.radio-cierre{margin-top:26px;font-size:18px;line-height:1.6;color:var(--ink-2)}
-.radio-cierre b{color:var(--ink);font-weight:500}
-.radio .cta{margin-top:30px}
+/* ── Contacto ── */
+.end{padding-block:clamp(68px,12vh,152px) clamp(40px,7vh,80px)}
+.end-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:start}
+.end h2{font-family:var(--fs);font-weight:700;font-size:clamp(30px,5.2vw,84px);line-height:.98;letter-spacing:-.025em;text-transform:uppercase}
+.end-links{display:flex;flex-wrap:wrap;gap:6px;font-size:clamp(17px,1.7vw,22px);margin-top:clamp(26px,4vh,52px)}
+.micro{font-size:15px;margin-top:1.2em}
+.fine{font-size:13px;margin-top:clamp(44px,8vh,96px);display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between}
+.fine ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 20px}
 
-/* ── Programas ────────────────────────────────────────── */
-.progs{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  margin-top:clamp(44px,6vw,80px);border-top:1px solid var(--rule-2);
+@media(max-width:880px){
+  body{font-size:18px}
+  .hero-lower{grid-template-columns:minmax(0,1fr)}
+  .hero-img{width:76%;max-height:none;margin-left:auto}
+  .hero-copy{max-width:none}
+  .disp-cut{display:none}
+  .disp{white-space:normal}
+  .split,.end-grid{grid-template-columns:minmax(0,1fr)}
+  .split-sticky{position:static}
+  .split-sticky img{max-width:66%}
+  .row{grid-template-columns:minmax(0,1fr);gap:2px}
+  .row .m{padding-top:0}
+  .band-imgs{gap:0 10px}
+  .b2{grid-column:1/7}
+  .b3{grid-column:8/13;margin-top:22px}
+  .b4{grid-column:1/8;margin-top:26px}
+  .band .stack{margin-top:clamp(-64px,-8vw,-26px)}
+  .nav ul{gap:14px}
 }
-.prog{
-  padding:clamp(28px,3vw,42px) clamp(20px,3vw,44px) clamp(28px,3vw,42px) 0;
-  display:flex;flex-direction:column;gap:18px;
-}
-.prog+.prog{border-left:1px solid var(--rule);padding-left:clamp(20px,3vw,44px)}
-.prog .bar{width:44px;height:4px;background:var(--red)}
-.prog .tag{
-  font-family:var(--fh);font-weight:700;font-size:14px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--red);
-}
-.prog p{font-size:17.5px;line-height:1.5;color:var(--mute)}
-.progs-nota{margin-top:26px;font-size:17px;color:var(--mute)}
 
-/* ── Contacto ─────────────────────────────────────────── */
-.contact-grid{
-  display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);
-  gap:clamp(28px,5vw,72px);align-items:end;
-}
-.contact h2{max-width:16ch}
-.cta-micro{font-size:16px;color:var(--mute);margin-top:4px}
-.contact-meta{
-  font-family:var(--fh);font-size:16px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--mute);display:flex;flex-direction:column;gap:10px;
-}
-.contact-meta b{color:var(--ink);font-weight:700}
-
-/* ── Footer ───────────────────────────────────────────── */
-.foot{border-top:1px solid var(--rule-2);padding:34px 0 46px}
-.foot-in{
-  max-width:var(--max);margin:0 auto;padding:0 var(--gut);
-  display:flex;flex-wrap:wrap;gap:18px 40px;
-  align-items:baseline;justify-content:space-between;
-}
-.foot-links{
-  list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:22px;
-  font-family:var(--fh);font-size:14px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--mute);
-}
-.foot-copy{font-size:14px;color:var(--mute)}
-
-/* ── Móvil ────────────────────────────────────────────── */
-@media(max-width:860px){
-  .head,.contact-grid{grid-template-columns:minmax(0,1fr)}
-  .bels,.progs{grid-template-columns:minmax(0,1fr);border-left:0}
-  .prog+.prog{border-left:0;border-top:1px solid var(--rule);padding-left:0}
-  .prog{padding-right:0}
-  .bel{border-right:0}
-  .nav-links{display:none}
-  .cta{padding:16px 20px;letter-spacing:.1em}
+@media print{
+  .nav{position:static}
+  .split-sticky{position:static}
+  body{background:#fff}
 }
   </style>
 </head>
@@ -246,183 +195,172 @@ em{font-style:normal;color:var(--red)}
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<!-- ── NAV ──────────────────────────────────────────────── -->
-<header class="nav">
-  <div class="nav-in">
-    <a class="logo" href="/"><b>MAL</b>·MARKETING</a>
-    <ul class="nav-links">
-      <li><a href="#sintomas">Síntomas</a></li>
-      <li><a href="#radiografia">Radiografía</a></li>
-      <li><a href="#quien">Quién</a></li>
-      <li><a href="#cta-rest">Contacto</a></li>
-    </ul>
-  </div>
-</header>
+<nav class="nav">
+  <a class="mark" href="/">MAL·MARKETING</a>
+  <ul>
+    <li><a href="#sintomas">Síntomas</a></li>
+    <li><a href="#radiografia">Radiografía</a></li>
+    <li><a href="#quien">Quién</a></li>
+    <li><a href="#cta-rest">Contacto</a></li>
+    <li><a class="u" href="https://calendly.com/chemabedmar/30min" target="_blank" rel="noopener">Segunda opinión</a></li>
+  </ul>
+</nav>
 
-<main id="top" class="wrap">
+<main id="top">
 
-  <!-- ── B1 HERO ────────────────────────────────────────── -->
-  <section class="hero">
-    <div class="stack">
-      <span class="label">Restaurantes · Alicante</span>
-      <h1>Nunca ha venido tanta gente a Alicante. Y nunca ha sido tan fácil <em>facturar menos.</em></h1>
-      <p class="lede">El supermercado de tu esquina ya vende comida buena, rápida y barata. Si tu restaurante solo vende comida buena, estás compitiendo contra Mercadona. Esa batalla la pierdes por precio. La que puedes ganar es otra: que la gente tenga un motivo para volver.</p>
-      <a class="cta" href="#cta-rest">Segunda opinión · 15 minutos</a>
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <section class="hero s-a wrap">
+    <span class="lab">Restaurantes · Alicante</span>
+    <div class="hero-type">
+      <span class="disp">Volver</span>
+      <span class="disp-cut"><span class="disp">Volver</span></span>
+    </div>
+    <div class="hero-lower">
+      <div class="hero-copy">
+        <h1 class="hd">Nunca ha venido tanta gente a Alicante. Y nunca ha sido tan fácil facturar menos.</h1>
+        <p>El supermercado de tu esquina ya vende comida buena, rápida y barata. Si tu restaurante solo vende comida buena, estás compitiendo contra Mercadona. Esa batalla la pierdes por precio. La que puedes ganar es otra: que la gente tenga un motivo para volver.</p>
+        <a class="cta" href="#cta-rest">Segunda opinión · 15 minutos</a>
+      </div>
+      <div class="hero-img"><img src="assets/plate-03.jpg" alt=""></div>
     </div>
   </section>
 
-  <!-- ── B2 SÍNTOMAS ────────────────────────────────────── -->
-  <section class="sect" id="sintomas">
-    <div class="head">
-      <div class="stack gap-s">
-        <span class="label">Los síntomas</span>
-        <h2>¿Te suena alguna<br>de <em>estas?</em></h2>
-      </div>
+  <!-- ── SÍNTOMAS ─────────────────────────────────────── -->
+  <section class="s-b pad wrap" id="sintomas">
+    <span class="lab u">Los síntomas</span>
+    <h2 class="hd">¿Te suena alguna de estas?</h2>
+    <div class="rows">
+      <div class="row"><span class="m">Síntoma 01</span><span class="t">El ticket medio baja aunque entre la misma gente: platos para compartir, dos refrescos y un agua.</span></div>
+      <div class="row"><span class="m">Síntoma 02</span><span class="t">Los del barrio, los de siempre, han dejado de venir. Y no sabes cuándo pasó.</span></div>
+      <div class="row"><span class="m">Síntoma 03</span><span class="t">El camarero bueno se fue en agosto y con él se fue media sala.</span></div>
+      <div class="row"><span class="m">Síntoma 04</span><span class="t">Copias lo que hace el de al lado y sigues sin llenar un martes.</span></div>
+      <div class="row"><span class="m">Síntoma 05</span><span class="t">Tienes un 4,3 en Google y la gente no repite. La nota no es el problema.</span></div>
     </div>
-    <ul class="sint">
-      <li>El ticket medio baja aunque entre la misma gente: platos para compartir, dos refrescos y un agua.</li>
-      <li>Los del barrio, los de siempre, han dejado de venir. Y no sabes cuándo pasó.</li>
-      <li>El camarero bueno se fue en agosto y con él se fue media sala.</li>
-      <li>Copias lo que hace el de al lado y sigues sin llenar un martes.</li>
-      <li>Tienes un 4,3 en Google y la gente no repite. La nota no es el problema.</li>
-    </ul>
-    <p class="sint-cierre">Nada de esto se arregla con más publicidad. Se arregla sabiendo primero qué está pasando de verdad.</p>
+    <p class="sub">Nada de esto se arregla con más publicidad. Se arregla sabiendo primero qué está pasando de verdad.</p>
   </section>
 
-  <!-- ── B3 EL NÚMERO ───────────────────────────────────── -->
-  <section class="sect" id="el-numero">
-    <div class="head">
-      <div class="stack gap-s">
-        <span class="label">El indicador clave</span>
-        <h2>¿Qué porcentaje de tus<br>cubiertos <em>repite?</em></h2>
-      </div>
-    </div>
-    <div class="note">
+  <!-- ── EL NÚMERO ────────────────────────────────────── -->
+  <section class="s-a pad wrap" id="el-numero">
+    <span class="lab u">El indicador clave</span>
+    <h2 class="hd">¿Qué porcentaje de tus cubiertos repite?</h2>
+    <div class="quote">
       <p>La mayoría de restaurantes no lo sabe. Y es el número que decide el futuro del negocio, porque el turista de una vez paga el verano, pero la mesa que vuelve cada jueves paga el invierno. Todo mi trabajo empieza por medir ese número y entender por qué es el que es.</p>
     </div>
   </section>
 
-  <!-- ── B4 TRES CREENCIAS ──────────────────────────────── -->
-  <section class="sect" id="creencias">
-    <div class="head">
-      <div class="stack gap-s">
-        <span class="label">Tres cosas en las que creo</span>
-        <h2>Tres cosas en las que creo<br><em>(y que van a incomodar a alguien)</em></h2>
+  <!-- ── TRES CREENCIAS ───────────────────────────────── -->
+  <section class="s-c pad wrap" id="creencias">
+    <span class="lab u">Tres cosas en las que creo</span>
+    <h2 class="hd">Tres cosas en las que creo (y que van a incomodar a alguien)</h2>
+    <div class="rows">
+      <div class="row">
+        <span class="m">Creencia 01</span>
+        <div><span class="t">Superar expectativas no es sorprender cada día.</span><p>Al que vuelve no le impresiona el truco. Le impresiona que te acuerdes de él, de su mesa y de lo que toma. Primero, que nada falle nunca, esté quien esté en el turno. Después, un detalle pequeño, pensado y tuyo. En ese orden. Sorprender sin consistencia es ruido caro.</p></div>
       </div>
-    </div>
-    <div class="bels">
-      <div class="bel">
-        <span class="n">1</span>
-        <h3>Superar expectativas no es sorprender cada día.</h3>
-        <p>Al que vuelve no le impresiona el truco. Le impresiona que te acuerdes de él, de su mesa y de lo que toma. Primero, que nada falle nunca, esté quien esté en el turno. Después, un detalle pequeño, pensado y tuyo. En ese orden. Sorprender sin consistencia es ruido caro.</p>
+      <div class="row">
+        <span class="m">Creencia 02</span>
+        <div><span class="t">El cliente fiel no siempre vive en tu barrio.</span><p>En Alicante hay turistas que vuelven cada año, las mismas semanas, al mismo apartamento, desde hace veinte años. Ese también es un habitual, y casi nadie lo trata como tal. Si él te reconoce cada julio y tú a él no, no has perdido un turista: has perdido un cliente fiel. Fidelizar no es una campaña para vecinos; es una forma de tratar a cualquiera que vuelve, venga de donde venga.</p></div>
       </div>
-      <div class="bel">
-        <span class="n">2</span>
-        <h3>El cliente fiel no siempre vive en tu barrio.</h3>
-        <p>En Alicante hay turistas que vuelven cada año, las mismas semanas, al mismo apartamento, desde hace veinte años. Ese también es un habitual, y casi nadie lo trata como tal. Si él te reconoce cada julio y tú a él no, no has perdido un turista: has perdido un cliente fiel. Fidelizar no es una campaña para vecinos; es una forma de tratar a cualquiera que vuelve, venga de donde venga.</p>
-      </div>
-      <div class="bel">
-        <span class="n">3</span>
-        <h3>Tu identidad es lo que no haces.</h3>
-        <p>Todo el mundo tiene una lista de lo que ofrece. Casi nadie tiene una lista de lo que no: qué plato no entra en la carta aunque lo pidan, a qué cliente no persigues, qué no prometes. Elegir es renunciar, y el que no renuncia a nada acaba siendo la décima terraza igual de la misma calle.</p>
+      <div class="row">
+        <span class="m">Creencia 03</span>
+        <div><span class="t">Tu identidad es lo que no haces.</span><p>Todo el mundo tiene una lista de lo que ofrece. Casi nadie tiene una lista de lo que no: qué plato no entra en la carta aunque lo pidan, a qué cliente no persigues, qué no prometes. Elegir es renunciar, y el que no renuncia a nada acaba siendo la décima terraza igual de la misma calle.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ── B5 RADIOGRAFÍA ─────────────────────────────────── -->
-  <section class="sect" id="radiografia">
-    <div class="head">
-      <div class="stack gap-s">
-        <span class="label">Fase 0</span>
-        <h2>Radiografía</h2>
+  <!-- ── RADIOGRAFÍA ──────────────────────────────────── -->
+  <section class="s-b pad wrap" id="radiografia">
+    <span class="lab u">Fase 0</span>
+    <h2 class="hd">Radiografía</h2>
+    <p class="sub">Antes de tocar nada, miro tu restaurante como lo ve un cliente, no como lo ve el dueño.</p>
+    <div class="rows">
+      <div class="row"><span class="m">Duración</span><span class="t">3 a 4 semanas</span></div>
+      <div class="row">
+        <span class="m">Qué incluye</span>
+        <div>
+          <ul>
+            <li>Tres visitas de cliente anónimo, en turnos y días distintos, con el mismo guion de observación.</li>
+            <li>Diez conversaciones cara a cara con tus clientes habituales. Sin encuestas: conversaciones.</li>
+            <li>Tus datos: cuánta gente repite, qué días cojeas, qué dice de ti un año de reseñas.</li>
+          </ul>
+        </div>
       </div>
-      <p class="lede">Antes de tocar nada, miro tu restaurante como lo ve un cliente, no como lo ve el dueño.</p>
+      <div class="row">
+        <span class="m">Qué recibes</span>
+        <div><p>Al final recibes un informe con lo que está pasando de verdad y una recomendación honesta: seguir conmigo, seguir por tu cuenta, o no hacer nada porque el problema no es el que crees. Lo decides tú.</p></div>
+      </div>
     </div>
+    <p style="margin-top:clamp(28px,4vh,52px)"><a class="cta" href="#cta-rest">Reservar segunda opinión</a></p>
+  </section>
 
-    <div class="radio">
-      <h3>3 a 4 semanas</h3>
-      <ul>
-        <li>Tres visitas de cliente anónimo, en turnos y días distintos, con el mismo guion de observación.</li>
-        <li>Diez conversaciones cara a cara con tus clientes habituales. Sin encuestas: conversaciones.</li>
-        <li>Tus datos: cuánta gente repite, qué días cojeas, qué dice de ti un año de reseñas.</li>
+  <!-- ── DESPUÉS ──────────────────────────────────────── -->
+  <section class="s-a pad wrap" id="despues">
+    <span class="lab u">Si hay trabajo que hacer</span>
+    <div class="band">
+      <div class="band-imgs">
+        <div class="b2"><img src="assets/plate-01.jpg" alt=""></div>
+        <div class="b3"><img src="assets/plate-05.jpg" alt=""></div>
+        <div class="b4"><img src="assets/plate-06.jpg" alt=""></div>
+      </div>
+      <ul class="stack">
+        <li>Lo hacemos.</li>
       </ul>
-      <p class="radio-cierre">Al final recibes un informe con lo que está pasando de verdad y una recomendación honesta: seguir conmigo, seguir por tu cuenta, o no hacer nada porque el problema no es el que crees. <b>Lo decides tú.</b></p>
-      <a class="cta" href="#cta-rest">Reservar segunda opinión</a>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <span class="m">Un local</span>
+        <div><span class="t">Programa completo · 12 semanas</span><p>Montamos el suelo: lo que no puede fallar nunca, esté quien esté en el turno. Y el techo: los detalles que hacen que la gente hable de ti y vuelva. Con tu equipo, en tu sala, con números cada semana.</p></div>
+      </div>
+      <div class="row">
+        <span class="m">3 a 5 locales</span>
+        <div><span class="t">Programa para grupos</span><p>Para quien tiene varios locales y necesita que todos jueguen en la misma liga sin depender de un encargado estrella.</p></div>
+      </div>
+    </div>
+    <p class="sub">El precio de estos programas depende de lo que salga en la Radiografía. Se habla con números delante, no antes.</p>
+  </section>
+
+  <!-- ── QUIÉN ────────────────────────────────────────── -->
+  <section class="s-c pad wrap" id="quien">
+    <div class="split">
+      <div class="split-sticky"><img src="assets/hero-portrait.jpg" alt="Chema Bedmar"></div>
+      <div class="split-txt">
+        <span class="lab">Quién te lo va a decir</span>
+        <h2 class="hd">Soy Chema Bedmar.</h2>
+        <p>Llevo 25 años trabajando en producto, marca e investigación de mercados para empresas que venden a personas exigentes, de Suavinex a la gran distribución. Vengo de familia de hostelería: he crecido viendo lo que pasa cuando un servicio se cae un sábado por la noche, y hoy asesoro a restaurantes que quieren dejar de depender de la suerte. Investigo a pie de calle: me siento en tu sala como un cliente más y hablo con la gente cara a cara. No soy una agencia, no te voy a mandar un becario y no te voy a decir lo que quieres oír.</p>
+      </div>
     </div>
   </section>
 
-  <!-- ── B6 DESPUÉS ─────────────────────────────────────── -->
-  <section class="sect" id="despues">
-    <div class="head">
-      <div class="stack gap-s">
-        <span class="label">Si hay trabajo que hacer</span>
-        <h2>Lo <em>hacemos.</em></h2>
+  <!-- ── CONTACTO ─────────────────────────────────────── -->
+  <section class="s-b end wrap" id="cta-rest">
+    <div class="end-grid">
+      <div>
+        <span class="lab u">¿Hablamos?</span>
+        <h2 style="margin-top:.5em">Segunda opinión.<br>15 minutos.</h2>
+      </div>
+      <div>
+        <p>Quince minutos por videollamada para contarme qué te preocupa y ver si tiene sentido que trabajemos juntos. No es una sesión de venta ni una auditoría gratis: si no te puedo ayudar, te lo digo y no te hago perder el tiempo.</p>
+        <div class="end-links">
+          <a class="u" href="https://calendly.com/chemabedmar/30min" target="_blank" rel="noopener">Reservar 15 minutos</a><span>,</span>
+          <a class="u" href="https://linkedin.com/in/chemabedmar" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <p class="micro">Trabajo con un máximo de tres clientes al año. Si no hay hueco, te lo diré.</p>
       </div>
     </div>
-    <div class="progs">
-      <div class="prog">
-        <div class="bar"></div>
-        <span class="tag">Un local</span>
-        <h3>Programa completo · 12 semanas</h3>
-        <p>Montamos el suelo: lo que no puede fallar nunca, esté quien esté en el turno. Y el techo: los detalles que hacen que la gente hable de ti y vuelva. Con tu equipo, en tu sala, con números cada semana.</p>
-      </div>
-      <div class="prog">
-        <div class="bar"></div>
-        <span class="tag">3 a 5 locales</span>
-        <h3>Programa para grupos</h3>
-        <p>Para quien tiene varios locales y necesita que todos jueguen en la misma liga sin depender de un encargado estrella.</p>
-      </div>
-    </div>
-    <p class="progs-nota">El precio de estos programas depende de lo que salga en la Radiografía. Se habla con números delante, no antes.</p>
-  </section>
-
-  <!-- ── B7 QUIÉN ───────────────────────────────────────── -->
-  <section class="sect" id="quien">
-    <div class="head">
-      <div class="stack gap-s">
-        <span class="label">Quién te lo va a decir</span>
-        <h2>Soy <em>Chema Bedmar.</em></h2>
-      </div>
-    </div>
-    <div class="note">
-      <p>Llevo 25 años trabajando en producto, marca e investigación de mercados para empresas que venden a personas exigentes, de Suavinex a la gran distribución. Vengo de familia de hostelería: he crecido viendo lo que pasa cuando un servicio se cae un sábado por la noche, y hoy asesoro a restaurantes que quieren dejar de depender de la suerte. Investigo a pie de calle: me siento en tu sala como un cliente más y hablo con la gente cara a cara. No soy una agencia, no te voy a mandar un becario y no te voy a decir lo que quieres oír.</p>
-    </div>
-  </section>
-
-  <!-- ── B8 CTA FINAL ───────────────────────────────────── -->
-  <section class="sect contact" id="cta-rest">
-    <div class="contact-grid">
-      <div class="stack">
-        <span class="label">¿Hablamos?</span>
-        <h2>Segunda opinión.<br><em>15 minutos.</em></h2>
-        <p class="lede">Quince minutos por videollamada para contarme qué te preocupa y ver si tiene sentido que trabajemos juntos. No es una sesión de venta ni una auditoría gratis: si no te puedo ayudar, te lo digo y no te hago perder el tiempo.</p>
-        <a class="cta" href="https://calendly.com/chemabedmar/30min" target="_blank" rel="noopener">Reservar 15 minutos</a>
-        <p class="cta-micro">Trabajo con un máximo de tres clientes al año. Si no hay hueco, te lo diré.</p>
-      </div>
-      <div class="contact-meta">
-        <span>Chema Bedmar · <b>CMO Interino</b></span>
-        <span>Alicante · <b>España</b></span>
-        <span><a href="https://linkedin.com/in/chemabedmar" target="_blank" rel="noopener">LinkedIn · <b>chemabedmar</b></a></span>
-      </div>
+    <div class="fine">
+      <span>Chema Bedmar · CMO Interino · Alicante</span>
+      <ul>
+        <li><a href="#sintomas">Síntomas</a></li>
+        <li><a href="#radiografia">Radiografía</a></li>
+        <li><a href="#quien">Quién</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="https://linkedin.com/in/chemabedmar" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+      <span>mal.marketing</span>
     </div>
   </section>
 
 </main>
-
-<!-- ── FOOTER ───────────────────────────────────────────── -->
-<footer class="foot">
-  <div class="foot-in">
-    <div class="logo"><b>MAL</b>·MARKETING</div>
-    <ul class="foot-links">
-      <li><a href="#sintomas">Síntomas</a></li>
-      <li><a href="#radiografia">Radiografía</a></li>
-      <li><a href="#quien">Quién</a></li>
-      <li><a href="/">Home</a></li>
-      <li><a href="https://linkedin.com/in/chemabedmar" target="_blank" rel="noopener">LinkedIn</a></li>
-    </ul>
-    <p class="foot-copy">Chema Bedmar · Alicante · mal.marketing</p>
-  </div>
-</footer>
 
 </body>
 </html>
