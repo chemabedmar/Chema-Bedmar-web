@@ -111,8 +111,6 @@ section{position:relative}
 /* El titular del hero es largo: baja de cuerpo y ensancha para no
    convertirse en una columna de ocho líneas junto al display */
 .hero-copy .hd{margin-top:0;max-width:26ch;font-size:clamp(24px,3.2vw,50px)}
-.hero-img{overflow:hidden;height:min(52vh,460px)}
-.hero-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.03)}
 .cta{
   font-family:var(--fs);font-size:19px;color:var(--ink);background:none;border:0;
   padding:0;text-decoration:underline;text-underline-offset:5px;
@@ -121,18 +119,7 @@ section{position:relative}
 
 /* ── Titulares apilados ── */
 .stack{margin-top:clamp(34px,6vh,76px);padding:0;margin-left:0;display:flex;flex-direction:column;list-style:none}
-.stack li{font-weight:700;font-size:clamp(26px,4.6vw,74px);line-height:.98;letter-spacing:-.025em;text-transform:uppercase;text-wrap:balance}
-
-/* ── Banda de imágenes + titular solapado ── */
-.band{position:relative;margin-top:clamp(30px,6vh,74px)}
-.band-imgs{display:grid;grid-template-columns:repeat(12,1fr);align-items:start;gap:0 clamp(8px,1.6vw,26px)}
-.band-imgs>div{position:relative;overflow:hidden}
-.band-imgs img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(1.46) contrast(.66)}
-.b2{grid-column:1/4;aspect-ratio:16/11}
-.b3{grid-column:6/8;aspect-ratio:3/4;margin-top:clamp(4px,1vw,18px)}
-.b4{grid-column:10/13;aspect-ratio:4/3;margin-top:clamp(16px,3.4vw,62px)}
-.band .stack{position:relative;z-index:3;margin-top:clamp(-190px,-9vw,-58px);pointer-events:none}
-.band .stack li{font-size:clamp(28px,5.6vw,92px);line-height:.94}
+.stack li{font-weight:700;font-size:clamp(28px,5.6vw,92px);line-height:.94;letter-spacing:-.025em;text-transform:uppercase;text-wrap:balance}
 
 /* ── Filas meta / título ── */
 .rows{margin-top:clamp(38px,6vh,84px);display:flex;flex-direction:column}
@@ -166,7 +153,6 @@ section{position:relative}
 @media(max-width:880px){
   body{font-size:18px}
   .hero-lower{grid-template-columns:minmax(0,1fr)}
-  .hero-img{width:76%;max-height:none;margin-left:auto}
   .hero-copy{max-width:none}
   .disp{white-space:normal}
   .split,.end-grid{grid-template-columns:minmax(0,1fr)}
@@ -174,11 +160,6 @@ section{position:relative}
   .split-sticky img{max-width:66%}
   .row{grid-template-columns:minmax(0,1fr);gap:2px}
   .row .m{padding-top:0}
-  .band-imgs{gap:0 10px}
-  .b2{grid-column:1/7}
-  .b3{grid-column:8/13;margin-top:22px}
-  .b4{grid-column:1/8;margin-top:26px}
-  .band .stack{margin-top:clamp(-64px,-8vw,-26px)}
   .nav ul{gap:14px}
 }
 
@@ -221,7 +202,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>El supermercado de tu esquina ya vende comida buena, rápida y barata. Si tu restaurante solo vende comida buena, estás compitiendo contra Mercadona. Esa batalla la pierdes por precio. La que puedes ganar es otra: que la gente tenga un motivo para volver.</p>
         <a class="cta" href="#cta-rest">Segunda opinión · 15 minutos</a>
       </div>
-      <div class="hero-img"><img src="assets/plate-03.jpg" alt=""></div>
     </div>
   </section>
 
@@ -296,16 +276,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ── DESPUÉS ──────────────────────────────────────── -->
   <section class="s-a pad wrap" id="despues">
     <span class="lab u">Si hay trabajo que hacer</span>
-    <div class="band">
-      <div class="band-imgs">
-        <div class="b2"><img src="assets/plate-01.jpg" alt=""></div>
-        <div class="b3"><img src="assets/plate-05.jpg" alt=""></div>
-        <div class="b4"><img src="assets/plate-06.jpg" alt=""></div>
-      </div>
-      <ul class="stack">
-        <li>Lo hacemos.</li>
-      </ul>
-    </div>
+    <ul class="stack">
+      <li>Lo hacemos.</li>
+    </ul>
     <div class="rows">
       <div class="row">
         <span class="m">Un local</span>
