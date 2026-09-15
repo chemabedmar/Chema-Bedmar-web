@@ -106,6 +106,10 @@ section{position:relative}
   padding:clamp(16px,2.6vh,38px) var(--gut) clamp(20px,3.2vh,46px);
   background:#0A0A0A url('assets/escuchar-fondo.jpg') center/cover no-repeat;
 }
+/* Las dos palabras van en color papel, no en naranja: sobre la foto el
+   naranja topa en 3:1 y obliga a oscurecerla hasta hacerla desaparecer.
+   En papel el fondo puede verse y el texto sube a 4,5:1 en su peor punto. */
+.hero-type .disp{color:var(--paper)}
 /* La segunda línea va entera: el eco se lee, no se recorta */
 .disp-cut{display:block;width:100%}
 .disp{
