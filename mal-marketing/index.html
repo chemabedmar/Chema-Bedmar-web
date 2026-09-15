@@ -97,7 +97,15 @@ section{position:relative}
 
 /* ── HERO ── */
 .hero{padding-block:clamp(30px,5vh,58px) clamp(48px,9vh,110px);overflow:hidden}
-.hero-type{position:relative;z-index:2;pointer-events:none}
+/* Banda oscura a sangre tras el display. El desenfoque y el oscurecido van
+   horneados en el fichero, no en filter: un blur de CSS cuesta cada repintado
+   y en móvil se nota. El color de fondo cubre si la imagen no carga. */
+.hero-type{
+  position:relative;z-index:2;pointer-events:none;
+  margin-inline:calc(var(--gut)*-1);
+  padding:clamp(16px,2.6vh,38px) var(--gut) clamp(20px,3.2vh,46px);
+  background:#0A0A0A url('assets/escuchar-fondo.jpg') center/cover no-repeat;
+}
 /* La segunda línea va entera: el eco se lee, no se recorta */
 .disp-cut{display:block;width:100%}
 .disp{
