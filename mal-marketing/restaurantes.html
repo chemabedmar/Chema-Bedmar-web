@@ -33,7 +33,7 @@
 /* ======================================================
    mal.marketing/restaurantes — rojo como única tinta
    Mismo sistema que la home: naranja sobre papel neutro,
-   Instrument Serif en display, sin animaciones ni JS.
+   Instrument Serif en display. Movimiento solo con CSS.
    ====================================================== */
 
 :root{
@@ -156,6 +156,33 @@ section{position:relative}
 .micro{font-size:15px;margin-top:1.2em}
 .fine{font-size:13px;margin-top:clamp(44px,8vh,96px);display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between}
 .fine ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 20px}
+
+/* ── Movimiento ─────────────────────────────────────────
+   Adaptado de la referencia: scroll suave, aparición al entrar
+   en pantalla y transiciones de hover. Todo con CSS, sin
+   librerías ni JS propio.
+   El contenido es visible por defecto: la animación solo entra
+   donde el navegador soporta líneas de tiempo de scroll, así que
+   si no la soporta no se pierde nada. Y se desactiva entera si
+   el sistema pide reducir movimiento. */
+@media (prefers-reduced-motion: no-preference){
+  html{scroll-behavior:smooth}
+  a,.cta{transition:color .45s cubic-bezier(.44,0,.56,1),background-color .45s cubic-bezier(.44,0,.56,1)}
+
+  @supports (animation-timeline: view()){
+    .lab,.hd,.sub,.row,.num,.quote,.stack li,.mq-t span{
+      animation:entra linear both;
+      animation-timeline:view();
+      animation-range:entry 0% entry 40%;
+    }
+    /* El hero ya está en pantalla al cargar: no debe aparecer */
+    .hero .lab,.hero .hd,.hero .num{animation:none}
+  }
+  @keyframes entra{
+    from{opacity:0;transform:translateY(18px)}
+    to{opacity:1;transform:none}
+  }
+}
 
 @media(max-width:880px){
   body{font-size:18px}
