@@ -178,6 +178,25 @@ section{position:relative}
     /* El hero ya está en pantalla al cargar: no debe aparecer */
     .hero .lab,.hero .hd,.hero .num{animation:none}
   }
+  /* ── Banda anclada ──────────────────────────────────
+     El display se queda fijo y el resto de la página pasa por
+     encima, como en la referencia. Solo donde hay pantalla de
+     sobra: el hero mide más de 1000 px y anclarlo entero
+     recortaría los enlaces y las cifras, así que se ancla solo
+     la banda, que mide 429.
+     .hero pasa de overflow:hidden a clip porque hidden crea un
+     contenedor de scroll y anularía el anclaje. */
+  @media (min-width:881px) and (min-height:620px){
+    .hero{overflow:clip}
+    .hero-type{position:sticky;top:0;z-index:1}
+    .hero-lower{
+      position:relative;z-index:2;background:var(--paper);
+      margin-inline:calc(var(--gut)*-1);
+      padding:clamp(26px,5vh,64px) var(--gut) 0;
+      margin-top:0;
+    }
+  }
+
   @keyframes entra{
     from{opacity:0;transform:translateY(18px)}
     to{opacity:1;transform:none}
