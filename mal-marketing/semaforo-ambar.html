@@ -238,6 +238,9 @@ section{position:relative}
 }
 /* ── Resultado: la señal se da con tipografía y una barra de tramos,
       en una sola tinta. Uno, dos o tres tramos llenos. ── */
+/* Sello: un símbolo de trazo, en la misma tinta, que acompaña a la palabra */
+.sello{width:clamp(84px,10vw,136px);margin-bottom:clamp(18px,3vh,30px)}
+.sello svg{display:block;width:100%;height:auto}
 .res{padding-block:clamp(56px,9vh,120px) clamp(64px,10vh,130px)}
 .tagres{font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.5em}
 .bar{display:flex;gap:8px;max-width:560px;margin-bottom:clamp(26px,4vh,44px)}
@@ -271,6 +274,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ── RESULTADO ────────────────────────────────────── -->
   <section class="res s-a wrap">
+    <div class="sello" role="img" aria-label="Atención"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="50" r="42"/><path d="M50 28v26"/><circle cx="50" cy="70" r="3.5" fill="currentColor" stroke="none"/></svg></div>
     <div class="tagres">Resultado · algo roza</div>
     <div class="bar" aria-hidden="true"><span class="seg on"></span><span class="seg on"></span><span class="seg"></span></div>
     <h1 class="state">Algo roza</h1>
