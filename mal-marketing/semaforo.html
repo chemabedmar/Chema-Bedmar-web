@@ -14,11 +14,11 @@
   <meta name="description" content="Ocho preguntas sobre tu restaurante, ninguna sobre dinero. Al final no hay un informe: hay una señal, y sabrás si algo de lo básico está rozando. Sin email y sin guardar nada.">
   <meta name="author" content="Chema Bedmar">
   <meta name="theme-color" content="#F1F1EF">
-  <meta property="og:title" content="¿Abierto? ¿Cerrado? Semáforo para restaurantes | MalMarketing — Chema Bedmar">
+  <meta property="og:title" content="Tu restaurante, ¿lo analizamos? Semáforo para restaurantes | MalMarketing — Chema Bedmar">
   <meta property="og:description" content="Ocho preguntas sobre tu restaurante, ninguna sobre dinero. Al final no hay un informe: hay una señal.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mal.marketing/restaurantes/semaforo">
-  <title>¿Abierto? ¿Cerrado? Semáforo para restaurantes | MalMarketing — Chema Bedmar</title>
+  <title>Tu restaurante, ¿lo analizamos? Semáforo para restaurantes | MalMarketing — Chema Bedmar</title>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -120,10 +120,11 @@ section{position:relative}
   background:var(--paper) url('/assets/cerrado-fondo.jpg') center/cover no-repeat;
 }
 .disp-cut{display:block;width:100%}
-/* «¿Cerrado?» tiene un signo más que «Escuchar»: baja un punto de cuerpo
-   para que la segunda línea entre entera a cualquier anchura */
+/* Dos líneas de quince caracteres: el cuerpo baja respecto a la home
+   («Escuchar» tiene ocho) para que entren enteras a cualquier anchura */
+.disp-link{display:block;color:inherit;pointer-events:auto}
 .disp{
-  font-family:var(--fd);font-size:clamp(44px,15vw,252px);line-height:.78;
+  font-family:var(--fd);font-size:clamp(34px,9.2vw,160px);line-height:.82;
   letter-spacing:-.02em;text-transform:uppercase;display:block;white-space:nowrap;
 }
 .hero-lower{
@@ -280,8 +281,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="hero s-a wrap">
     <span class="lab">Restaurantes · 8 preguntas</span>
     <div class="hero-type">
-      <span class="disp">¿Abierto?</span>
-      <span class="disp-cut"><span class="disp">¿Cerrado?</span></span>
+      <a class="disp-link" href="#preguntas">
+        <span class="disp">Tu restaurante</span>
+        <span class="disp-cut"><span class="disp">¿lo analizamos?</span></span>
+      </a>
     </div>
     <div class="hero-lower">
       <div class="hero-copy">
