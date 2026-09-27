@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MTB4CN52HT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MTB4CN52HT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ocho preguntas sobre tu restaurante, ninguna sobre dinero. Al final no hay un informe: hay una señal, y sabrás si algo de lo básico está rozando. Sin email y sin guardar nada.">
+  <meta name="author" content="Chema Bedmar">
+  <meta name="theme-color" content="#F1F1EF">
+  <meta property="og:title" content="¿Abierto? ¿Cerrado? Semáforo para restaurantes | MalMarketing — Chema Bedmar">
+  <meta property="og:description" content="Ocho preguntas sobre tu restaurante, ninguna sobre dinero. Al final no hay un informe: hay una señal.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mal.marketing/restaurantes/semaforo">
+  <title>¿Abierto? ¿Cerrado? Semáforo para restaurantes | MalMarketing — Chema Bedmar</title>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PT8R8LX5');</script>
+  <!-- End Google Tag Manager -->
+  <!-- Rutas absolutas: esta página vive en /restaurantes/semaforo y una
+       ruta relativa a assets/ caería en el catch-all de vercel.json -->
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+/* ======================================================
+   mal.marketing/restaurantes/semaforo — rojo como única tinta
+   Mismo sistema que la home. El formulario es HTML puro: las
+   respuestas van por POST a /api/semaforo, que decide el color y
+   redirige a la página de resultado. Sin JS propio en el cliente.
+   ====================================================== */
+
+:root{
+  --ink:#F4361C;
+  --paper:#F1F1EF;
+  --paper-2:#E6E6E4;
+  --paper-3:#EDEDEA;
+  --fd:'Instrument Serif',Times,serif;
+  --fs:'Helvetica Neue',Helvetica,'Archivo',Arial,sans-serif;
+  --gut:clamp(20px,4.6vw,64px);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--fs);font-size:20px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+p{margin:0;max-width:52ch}
+h1,h2,h3{margin:0;font-weight:400;color:var(--ink)}
+::selection{background:var(--ink);color:var(--paper)}
+
+a{color:var(--ink);text-decoration:none}
+a.u{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+
+.wrap{padding:0 var(--gut)}
+section{position:relative}
+.s-a{background:var(--paper)}
+.s-b{background:var(--paper-2)}
+.s-c{background:var(--paper-3)}
+.pad{padding-block:clamp(72px,12vh,150px)}
+
+/* ── Nav ── */
+.nav{
+  position:sticky;top:0;z-index:60;background:var(--paper);
+  padding:16px var(--gut);display:flex;align-items:baseline;
+  justify-content:space-between;gap:16px 24px;flex-wrap:wrap;
+}
+.mark{font-family:var(--fs);font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase}
+.nav ul{
+  list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;
+  gap:clamp(14px,2.4vw,32px);font-size:clamp(15px,1.4vw,19px);
+}
+
+/* ── Etiqueta serif itálica ── */
+.lab{font-family:var(--fd);font-style:italic;font-size:clamp(20px,2.3vw,31px);line-height:1.1;display:inline-block}
+.lab.u{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+
+/* ── Titular de sección ── */
+.hd{
+  font-family:var(--fs);font-weight:700;
+  font-size:clamp(26px,4.2vw,64px);line-height:.98;
+  letter-spacing:-.025em;text-transform:uppercase;text-wrap:balance;
+  margin-top:.34em;max-width:18ch;
+}
+
+/* ── HERO ── */
+.hero{padding-block:clamp(30px,5vh,58px) clamp(48px,9vh,110px);overflow:hidden}
+/* Banda a sangre tras el display, igual que en la home y en restaurantes.
+   El color de fondo cubre si la imagen no carga. */
+.hero-type{
+  position:relative;z-index:2;pointer-events:none;
+  margin-inline:calc(var(--gut)*-1);
+  padding:clamp(16px,2.6vh,38px) var(--gut) clamp(20px,3.2vh,46px);
+  background:var(--paper) url('/assets/cerrado-fondo.jpg') center/cover no-repeat;
+}
+.disp-cut{display:block;width:100%}
+/* «¿Cerrado?» tiene un signo más que «Escuchar»: baja un punto de cuerpo
+   para que la segunda línea entre entera a cualquier anchura */
+.disp{
+  font-family:var(--fd);font-size:clamp(44px,15vw,252px);line-height:.78;
+  letter-spacing:-.02em;text-transform:uppercase;display:block;white-space:nowrap;
+}
+.hero-lower{
+  display:grid;grid-template-columns:minmax(0,1fr) min(38%,540px);
+  gap:clamp(24px,4vw,64px);align-items:start;
+  margin-top:clamp(26px,5vh,64px);
+}
+.hero-copy{display:flex;flex-direction:column;gap:1.1em;max-width:44ch}
+.hero-copy p{max-width:none}
+.cta{
+  font-family:var(--fs);font-size:19px;color:var(--ink);background:none;border:0;
+  padding:0;text-decoration:underline;text-underline-offset:5px;
+  text-decoration-thickness:1px;align-self:flex-start;max-width:100%;
+}
+
+/* ── Cifras: el mismo bloque que la home ── */
+.nums{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(20px,3vw,56px);padding:clamp(28px,5vh,60px) 0 0;
+}
+.num .v{font-family:var(--fd);font-size:clamp(46px,6vw,104px);line-height:.86;display:block}
+.num .k{font-size:17px;line-height:1.35;margin-top:.5em;display:block;max-width:22ch}
+
+/* ── Los tres pasos, dichos en literal ── */
+.pasos{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(20px,4vw,72px);margin-top:clamp(34px,6vh,76px);
+  border-top:1px solid rgba(244,54,28,.3);padding-top:clamp(22px,3.4vh,38px);
+}
+.paso .n{font-family:var(--fd);font-size:clamp(34px,4.4vw,72px);line-height:.86;display:block}
+.paso p{font-size:18px;margin-top:.6em;max-width:26ch}
+
+/* ── Preguntas: la fila de la home, con ayuda debajo ── */
+.rows{margin-top:clamp(34px,5vh,70px);display:flex;flex-direction:column}
+.q{
+  display:grid;grid-template-columns:clamp(90px,13vw,190px) minmax(0,1fr);
+  gap:clamp(16px,3vw,52px);padding:clamp(22px,3.2vh,36px) 0;align-items:baseline;
+  border-top:1px solid rgba(244,54,28,.24);min-width:0;
+}
+.q .m{font-size:14px;line-height:1.3;padding-top:.6em}
+.q .t{font-size:clamp(22px,2.6vw,36px);line-height:1.1;letter-spacing:-.015em;display:block}
+.q .ayuda{font-size:17px;line-height:1.45;margin-top:.6em;opacity:.78;max-width:46ch}
+
+/* Respuestas: radios nativos escondidos (siguen siendo enfocables, así
+   el navegador puede señalar la que falta) y la etiqueta hace de botón */
+.opts{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.1em}
+.opt{position:relative;display:inline-block}
+.opt input{position:absolute;width:1px;height:1px;margin:0;opacity:0;overflow:hidden;clip:rect(0 0 0 0)}
+.opt span{
+  display:inline-flex;align-items:center;min-height:50px;padding:0 24px;
+  font-size:18px;border:1px solid rgba(244,54,28,.45);cursor:pointer;
+}
+.opt input:checked+span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.opt input:focus-visible+span{outline:2px solid var(--ink);outline-offset:3px}
+
+/* ── El único botón sólido de toda la web ── */
+.enviar{margin-top:clamp(40px,6vh,80px);display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px}
+.btn{
+  font-family:var(--fs);font-weight:700;font-size:clamp(19px,2vw,26px);
+  letter-spacing:.02em;text-transform:uppercase;
+  background:var(--ink);color:var(--paper);border:0;padding:20px 40px;cursor:pointer;
+}
+.enviar p{font-size:17px;opacity:.78;max-width:34ch}
+/* Aviso sin JS: /api/semaforo redirige aquí con #incompleto si falta algo */
+.aviso{display:none;margin-top:1.2em;font-size:18px;font-weight:700}
+.aviso:target{display:block}
+
+/* ── Contacto ── */
+.end{padding-block:clamp(68px,12vh,152px) clamp(40px,7vh,80px)}
+.end-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:start}
+.end h2{font-family:var(--fs);font-weight:700;font-size:clamp(30px,5.2vw,84px);line-height:.98;letter-spacing:-.025em;text-transform:uppercase}
+.end-links{display:flex;flex-wrap:wrap;gap:6px;font-size:clamp(17px,1.7vw,22px);margin-top:clamp(26px,4vh,52px)}
+.micro{font-size:15px;margin-top:1.2em}
+.fine{font-size:13px;margin-top:clamp(44px,8vh,96px);display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between}
+.fine ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 20px}
+
+/* ── Movimiento: igual que en las otras dos páginas ── */
+@media (prefers-reduced-motion: no-preference){
+  html{scroll-behavior:smooth}
+  a,.cta,.opt span,.btn{transition:color .45s cubic-bezier(.44,0,.56,1),background-color .45s cubic-bezier(.44,0,.56,1)}
+
+  @supports (animation-timeline: view()){
+    .lab,.hd,.num,.paso,.q{
+      animation:entra linear both;
+      animation-timeline:view();
+      animation-range:entry 0% entry 40%;
+    }
+    .hero .lab,.hero .hd,.hero .num{animation:none}
+  }
+  @media (min-width:881px) and (min-height:620px){
+    .hero{overflow:clip}
+    .hero-type{position:sticky;top:0;z-index:1}
+    .hero-lower{
+      position:relative;z-index:2;background:var(--paper);
+      margin-inline:calc(var(--gut)*-1);
+      padding:clamp(26px,5vh,64px) var(--gut) 0;
+      margin-top:0;
+    }
+    .pasos{position:relative;z-index:2;background:var(--paper)}
+  }
+
+  @keyframes entra{
+    from{opacity:0;transform:translateY(18px)}
+    to{opacity:1;transform:none}
+  }
+}
+
+@media(max-width:880px){
+  body{font-size:18px}
+  .hero-lower,.end-grid{grid-template-columns:minmax(0,1fr)}
+  .hero-copy{max-width:none}
+  .disp{white-space:normal}
+  .nums{gap:14px}
+  .num .k{font-size:14px}
+  .pasos{grid-template-columns:minmax(0,1fr);gap:26px}
+  .q{grid-template-columns:minmax(0,1fr);gap:4px}
+  .q .m{padding-top:0}
+  .btn{width:100%;text-align:center}
+  .nav ul{gap:14px}
+}
+
+@media print{
+  .nav{position:static}
+  body{background:#fff}
+}
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PT8R8LX5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<nav class="nav">
+  <a class="mark" href="/">MAL·MARKETING</a>
+  <ul>
+    <li><a href="#pasos">Cómo funciona</a></li>
+    <li><a href="#preguntas">Preguntas</a></li>
+    <li><a href="/restaurantes">Restaurantes</a></li>
+    <li><a class="u" href="https://calendly.com/chemabedmar/30min" target="_blank" rel="noopener">Segunda opinión</a></li>
+  </ul>
+</nav>
+
+<main id="top">
+
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <section class="hero s-a wrap">
+    <span class="lab">Restaurantes · 8 preguntas</span>
+    <div class="hero-type">
+      <span class="disp">¿Abierto?</span>
+      <span class="disp-cut"><span class="disp">¿Cerrado?</span></span>
+    </div>
+    <div class="hero-lower">
+      <div class="hero-copy">
+        <h1 class="hd" style="margin-top:0;max-width:26ch;font-size:clamp(24px,3.2vw,50px)">Ocho preguntas sobre tu restaurante. Ninguna sobre dinero.</h1>
+        <p>Al final no hay un informe: hay una señal, y sabrás si algo de lo básico está rozando. No pide email y no guarda nada.</p>
+        <a class="cta" href="#preguntas">Empezar ↓</a>
+        <a class="cta" href="https://calendly.com/chemabedmar/30min" target="_blank" rel="noopener">Hablarlo directamente — 30 min sin compromiso</a>
+      </div>
+      <div class="nums">
+        <div class="num"><span class="v">8</span><span class="k">preguntas</span></div>
+        <div class="num"><span class="v">2</span><span class="k">minutos</span></div>
+        <div class="num"><span class="v">0</span><span class="k">datos guardados</span></div>
+      </div>
+    </div>
+    <div class="pasos" id="pasos">
+      <div class="paso"><span class="n">1</span><p>Respondes ocho preguntas pulsando un botón. No hay que escribir nada.</p></div>
+      <div class="paso"><span class="n">2</span><p>Pulsas «Ver mi resultado» al final de la lista.</p></div>
+      <div class="paso"><span class="n">3</span><p>Sale una señal y tres frases. Nada más.</p></div>
+    </div>
+  </section>
+
+  <!-- ── PREGUNTAS ────────────────────────────────────── -->
+  <section class="s-b pad wrap" id="preguntas">
+    <span class="lab u">Las preguntas</span>
+    <h2 class="hd">Responde sin pensarlo mucho.</h2>
+
+    <form class="rows" method="POST" action="/api/semaforo">
+
+      <div class="q" role="group" aria-labelledby="q1">
+        <span class="m">01</span>
+        <div>
+          <span class="t" id="q1">¿Se puede pagar con tarjeta o con el móvil?</span>
+          <p class="ayuda">Si solo aceptas efectivo, o el datáfono falla a menudo, responde «No».</p>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="tarjeta" value="si" required><span>Sí</span></label>
+            <label class="opt"><input type="radio" name="tarjeta" value="no" required><span>No</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="q" role="group" aria-labelledby="q2">
+        <span class="m">02</span>
+        <div>
+          <span class="t" id="q2">¿Se puede reservar mesa?</span>
+          <p class="ayuda">Por teléfono, WhatsApp o web. Cualquiera de las tres vale.</p>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="reservas" value="si" required><span>Sí</span></label>
+            <label class="opt"><input type="radio" name="reservas" value="no" required><span>No</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="q" role="group" aria-labelledby="q3">
+        <span class="m">03</span>
+        <div>
+          <span class="t" id="q3">¿Más de la mitad de las plazas son taburete o barra?</span>
+          <p class="ayuda">Cuenta los asientos, no las mesas.</p>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="taburetes" value="si" required><span>Sí</span></label>
+            <label class="opt"><input type="radio" name="taburetes" value="no" required><span>No</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="q" role="group" aria-labelledby="q4">
+        <span class="m">04</span>
+        <div>
+          <span class="t" id="q4">En el último año, ¿te han dicho que hace calor, huele o hay ruido?</span>
+          <p class="ayuda">Cuenta lo que te dicen en la mesa, no solo lo que aparece por escrito.</p>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="calor" value="no" required><span>No</span></label>
+            <label class="opt"><input type="radio" name="calor" value="alguna" required><span>Alguna vez</span></label>
+            <label class="opt"><input type="radio" name="calor" value="varias" required><span>Varias veces</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="q" role="group" aria-labelledby="q5">
+        <span class="m">05</span>
+        <div>
+          <span class="t" id="q5">¿Y que han esperado mucho o que el servicio ha fallado?</span>
+          <p class="ayuda">Igual que la anterior: cuenta también lo que se dice de viva voz.</p>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="espera" value="no" required><span>No</span></label>
+            <label class="opt"><input type="radio" name="espera" value="alguna" required><span>Alguna vez</span></label>
+            <label class="opt"><input type="radio" name="espera" value="varias" required><span>Varias veces</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="q" role="group" aria-labelledby="q6">
+        <span class="m">06</span>
+        <div>
+          <span class="t" id="q6">¿Cuánta gente viene al menos una vez por semana?</span>
+          <p class="ayuda">Los de siempre, los que te saben el nombre. A ojo basta.</p>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="fieles" value="pocos" required><span>Pocos</span></label>
+            <label class="opt"><input type="radio" name="fieles" value="bastantes" required><span>Bastantes</span></label>
+            <label class="opt"><input type="radio" name="fieles" value="mayoria" required><span>La mayoría</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="q" role="group" aria-labelledby="q7">
+        <span class="m">07</span>
+        <div>
+          <span class="t" id="q7">¿Tu mes más flojo vende menos de la mitad que el más fuerte?</span>
+          <p class="ayuda">Compara el mejor mes del año con el peor. Si no lo tienes claro, dilo.</p>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="mesflojo" value="si" required><span>Sí</span></label>
+            <label class="opt"><input type="radio" name="mesflojo" value="no" required><span>No</span></label>
+            <label class="opt"><input type="radio" name="mesflojo" value="nose" required><span>No lo sé</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="q" role="group" aria-labelledby="q8">
+        <span class="m">08</span>
+        <div>
+          <span class="t" id="q8">¿Dónde está el local?</span>
+          <p class="ayuda">Si dudas, elige por quién entra: turista, gente de paso o vecinos.</p>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="zona" value="playa" required><span>Playa o turística</span></label>
+            <label class="opt"><input type="radio" name="zona" value="centro" required><span>Centro</span></label>
+            <label class="opt"><input type="radio" name="zona" value="barrio" required><span>Barrio</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="enviar">
+        <button class="btn" type="submit">Ver mi resultado</button>
+        <p>Sale una señal y tres frases. No se guarda ninguna respuesta.</p>
+      </div>
+      <p class="aviso" id="incompleto">Falta alguna respuesta. Revisa la lista y vuelve a pulsar.</p>
+    </form>
+  </section>
+
+  <!-- ── CONTACTO ─────────────────────────────────────── -->
+  <section class="s-a end wrap" id="contacto">
+    <div class="end-grid">
+      <div>
+        <span class="lab u">¿Prefieres hablarlo?</span>
+        <h2 style="margin-top:.5em">Segunda opinión.<br>30 minutos.</h2>
+      </div>
+      <div>
+        <p>Treinta minutos por videollamada para contarme qué te preocupa y ver si tiene sentido que trabajemos juntos. No es una sesión de venta ni una auditoría gratis: si no te puedo ayudar, te lo digo y no te hago perder el tiempo.</p>
+        <div class="end-links">
+          <a class="u" href="https://calendly.com/chemabedmar/30min" target="_blank" rel="noopener">Reservar 30 minutos</a><span>,</span>
+          <a class="u" href="https://linkedin.com/in/chemabedmar" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <p class="micro">Trabajo con un máximo de tres clientes al año. Si no hay hueco, te lo diré.</p>
+      </div>
+    </div>
+    <div class="fine">
+      <span>Chema Bedmar · CMO Interino · Alicante</span>
+      <ul>
+        <li><a href="#preguntas">Preguntas</a></li>
+        <li><a href="/restaurantes">Restaurantes</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="https://linkedin.com/in/chemabedmar" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+      <span>mal.marketing</span>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

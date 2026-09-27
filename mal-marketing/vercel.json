@@ -1,7 +1,11 @@
 {
   "rewrites": [
     { "source": "/restaurantes", "destination": "/restaurantes.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/restaurantes/semaforo", "destination": "/semaforo.html" },
+    { "source": "/restaurantes/semaforo/verde", "destination": "/semaforo-verde.html" },
+    { "source": "/restaurantes/semaforo/ambar", "destination": "/semaforo-ambar.html" },
+    { "source": "/restaurantes/semaforo/rojo", "destination": "/semaforo-rojo.html" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ],
   "headers": [
     {

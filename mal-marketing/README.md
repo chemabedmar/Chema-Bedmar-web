@@ -8,11 +8,30 @@ Web personal de Chema Bedmar — CMO Interino y fundador de MalMarketing.
 /
 ├── index.html           # One-pager completo (HTML + CSS inline, sin JS)
 ├── restaurantes.html    # Landing /restaurantes
+├── semaforo.html        # /restaurantes/semaforo — formulario de 8 preguntas
+├── semaforo-verde.html  # /restaurantes/semaforo/verde  (resultados: tres
+├── semaforo-ambar.html  #   páginas estáticas a las que redirige la API)
+├── semaforo-rojo.html
+├── api/
+│   └── semaforo.js      # Función Vercel: recibe el POST, decide el color
 ├── assets/
 │   └── hero-portrait.jpg  # Retrato del hero
-├── vercel.json          # Config de Vercel
+├── vercel.json          # Rewrites de las rutas limpias y cabeceras
 └── README.md            # Este archivo
 ```
+
+### Semáforo de restaurantes
+
+El formulario es HTML puro (sin JS en el cliente). Al enviar hace POST a
+`/api/semaforo`; la función valida las ocho respuestas, calcula el color con
+los pesos que están al principio de `api/semaforo.js` y redirige (303) a
+`/restaurantes/semaforo/verde|ambar|rojo`. Si falta alguna respuesta redirige
+de vuelta con `#incompleto`, que muestra el aviso por CSS. No guarda nada, no
+pone cookies. Con `Content-Type: application/json` devuelve `{ "color": "…" }`
+en vez de redirigir.
+
+Las páginas que viven bajo `/restaurantes/` enlazan los assets con ruta
+absoluta (`/assets/…`); una relativa caería en el catch-all de `vercel.json`.
 
 ## Despliegue en Vercel + GitHub
 
