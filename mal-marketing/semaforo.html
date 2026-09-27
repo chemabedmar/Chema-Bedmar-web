@@ -74,17 +74,20 @@ section{position:relative}
 .pad{padding-block:clamp(72px,12vh,150px)}
 
 /* ── Destacado: novedades y noticias en mad.marketing ── */
+/* La franja y el nav van dentro de un mismo bloque anclado, así se
+   quedan los dos arriba al hacer scroll sin calcular alturas */
+.fija{position:sticky;top:0;z-index:60}
 .top{
-  background:var(--paper-2);padding:10px var(--gut);
+  background:var(--ink);color:#fff;padding:10px var(--gut);
   display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 18px;
   font-size:clamp(14px,1.2vw,17px);line-height:1.4;
 }
 .top i{font-family:var(--fd);font-style:italic;font-size:clamp(18px,1.6vw,22px);line-height:1.1}
-.top a{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;white-space:nowrap}
+.top a{color:#fff;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;white-space:nowrap}
 
 /* ── Nav ── */
 .nav{
-  position:sticky;top:0;z-index:60;background:var(--paper);
+  background:var(--paper);
   padding:16px var(--gut);display:flex;align-items:baseline;
   justify-content:space-between;gap:16px 24px;flex-wrap:wrap;
 }
@@ -243,7 +246,7 @@ section{position:relative}
 }
 
 @media print{
-  .nav{position:static}
+  .fija{position:static}
   body{background:#fff}
 }
   </style>
@@ -254,6 +257,7 @@ section{position:relative}
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<header class="fija">
 <div class="top">
   <i>¿Quieres estar al día?</i>
   <span>Novedades y noticias de MadMarketing en <a href="https://madmarketing.es" target="_blank" rel="noopener">madmarketing.es →</a></span>
@@ -268,6 +272,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a class="u" href="https://calendly.com/chemabedmar/30min" target="_blank" rel="noopener">Segunda opinión</a></li>
   </ul>
 </nav>
+</header>
 
 <main id="top">
 
