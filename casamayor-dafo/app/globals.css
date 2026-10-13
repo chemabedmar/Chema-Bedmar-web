@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Tokens de marca. Fuente única: /data/marca.ts (Tailwind los lee de ahí). */
+  --casamayor-texto: #3a3a3a;
+  --casamayor-texto-suave: #6b6b6b;
+  --casamayor-dorado: #d38a03;
+  --casamayor-dorado-oscuro: #b07403;
+  --casamayor-marino: #00237d;
+  --casamayor-turquesa: #00b4bb;
+  --casamayor-borde: #e5e5e5;
+  --casamayor-gris-claro: #f6f6f6;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-texto;
+    /* La variable la define next/font en <html>; el fallback cubre el caso de que
+       la fuente aún no haya cargado. */
+    font-family: var(--fuente-roboto), 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-bold text-marino;
+    line-height: 1.25;
+  }
+
+  /* La web no usa animaciones de entrada: transiciones cortas y nada más. */
+  a,
+  button,
+  input,
+  select {
+    transition-duration: 150ms;
+  }
+
+  /* Quita las flechas de los input numéricos: molestan en móvil. */
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
+
+@layer components {
+  .titulo-seccion {
+    @apply text-[24px] font-bold leading-tight text-marino md:text-[30px];
+  }
+
+  .etiqueta-campo {
+    @apply mb-2 block text-[11px] font-bold uppercase tracking-[0.08em] text-texto-suave;
+  }
+
+  .campo {
+    @apply block w-full border border-borde bg-white px-3 py-2.5 text-[16px] text-texto outline-none;
+    border-radius: 2px;
+  }
+
+  .campo:focus {
+    @apply border-dorado;
+    box-shadow: 0 0 0 1px var(--casamayor-dorado);
+  }
+
+  .ficha {
+    @apply border border-borde bg-white shadow-ficha;
+    border-radius: 4px;
+  }
+
+  .boton {
+    @apply inline-flex items-center justify-center border px-6 py-3 text-[13px] font-bold uppercase tracking-[0.1em];
+    border-radius: 2px;
+  }
+
+  .boton-principal {
+    @apply boton border-dorado bg-dorado text-white;
+  }
+
+  .boton-principal:hover {
+    @apply border-dorado-oscuro bg-dorado-oscuro;
+  }
+
+  .boton-principal:disabled {
+    @apply cursor-not-allowed opacity-60;
+  }
+
+  .boton-borde {
+    @apply boton border-dorado bg-transparent text-dorado;
+  }
+
+  .boton-borde:hover {
+    @apply border-dorado-oscuro text-dorado-oscuro;
+  }
+
+  .boton-marino {
+    @apply boton border-marino bg-marino text-white;
+  }
+
+  .boton-marino:hover {
+    @apply border-marino-oscuro bg-marino-oscuro;
+  }
+}
