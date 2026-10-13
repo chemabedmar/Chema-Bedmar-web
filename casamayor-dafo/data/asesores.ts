@@ -19,6 +19,7 @@ export const ASESORES: Asesor[] = [
   { id: 'asesor-6', nombre: 'Patricia' },
   { id: 'asesor-7', nombre: 'Gabriela' },
   { id: 'asesor-8', nombre: 'Chema' },
+  { id: 'asesor-9', nombre: 'Santi' },
 ];
 
 export function buscarAsesor(id: string | null | undefined): Asesor | null {

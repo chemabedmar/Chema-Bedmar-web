@@ -11,15 +11,12 @@
  *   5     Cabecera de la tabla DAFO (Bloque | Punto | Peso (1-3) | Notas)
  *   6…    Una fila por punto, agrupadas por bloque (F, D, O, A)
  *   +1    (en blanco)
- *   …     Tabla Palancas (Debilidad o amenaza | Palanca)
- *   +1    (en blanco)
  *   …     Resumen (Bloque | Score | Lectura), Balance interno, Balance externo
  */
 import ExcelJS from 'exceljs';
 import { BLOQUES } from '@/data/catalogo';
 import { buscarAsesor } from '@/data/asesores';
-import { buscarPalanca } from '@/data/palancas';
-import { fechaCorta, puntosConPalanca, puntosDelBloque, type Dafo } from '@/lib/dafo';
+import { descargarBlob, fechaCorta, nombreBase, puntosDelBloque, type Dafo } from '@/lib/dafo';
 import { LECTURAS, UMBRALES_LECTURA, balances, lectura, scorePorBloque } from '@/lib/score';
 
 export const HOJA = 'DAFO';
@@ -40,7 +37,6 @@ export interface Disposicion {
   /** Primera y última fila de datos de la tabla DAFO. */
   dafoDesde: number;
   dafoHasta: number;
-  palancasCabecera: number;
   resumenCabecera: number;
   /** Fila del resumen de cada bloque. */
   filaResumen: Record<'F' | 'D' | 'O' | 'A', number>;
@@ -109,17 +105,6 @@ export function construirLibro(dafo: Dafo): { libro: ExcelJS.Workbook; disposici
   }
   fila = dafoHasta + 2;
 
-  // ── Palancas ──────────────────────────────────────────────────────────────
-  const palancasCabecera = fila;
-  hoja.getRow(fila).values = ['Debilidad o amenaza', 'Palanca'];
-  negrita(hoja.getRow(fila));
-  fila += 1;
-  for (const p of puntosConPalanca(dafo)) {
-    hoja.getRow(fila).values = [p.texto, buscarPalanca(dafo.palancas[p.id])?.texto ?? null];
-    fila += 1;
-  }
-  fila += 1;
-
   // ── Resumen ───────────────────────────────────────────────────────────────
   const scores = scorePorBloque(dafo.puntos);
   const bal = balances(scores);
@@ -155,7 +140,6 @@ export function construirLibro(dafo: Dafo): { libro: ExcelJS.Workbook; disposici
     disposicion: {
       dafoDesde,
       dafoHasta,
-      palancasCabecera,
       resumenCabecera,
       filaResumen,
       filaBalanceInterno,
@@ -169,17 +153,9 @@ export async function generarExcel(dafo: Dafo): Promise<ArrayBuffer> {
   return (await libro.xlsx.writeBuffer()) as ArrayBuffer;
 }
 
-/** DAFO_<referencia>_<fecha>.xlsx, sin caracteres que den guerra en Windows o en el móvil. */
+/** DAFO_<referencia>_<fecha>.xlsx */
 export function nombreArchivo(dafo: Dafo): string {
-  const ref =
-    dafo.referencia
-      .trim()
-      .normalize('NFD')
-      .replace(/[̀-ͯ]/g, '')
-      .replace(/[^A-Za-z0-9-]+/g, '_')
-      .replace(/^_+|_+$/g, '')
-      .slice(0, 60) || 'sin-referencia';
-  return `DAFO_${ref}_${dafo.fecha}.xlsx`;
+  return `${nombreBase(dafo)}.xlsx`;
 }
 
 /** Genera y descarga el fichero. Solo en el navegador. */
@@ -188,12 +164,5 @@ export async function descargarExcel(dafo: Dafo): Promise<void> {
   const blob = new Blob([datos], {
     type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = nombreArchivo(dafo);
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  descargarBlob(blob, nombreArchivo(dafo));
 }

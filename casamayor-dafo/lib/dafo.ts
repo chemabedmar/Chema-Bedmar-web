@@ -30,8 +30,6 @@ export interface Dafo {
   /** En el orden en que se seleccionaron. */
   puntos: Seleccion[];
   notas: Record<Bloque, string>;
-  /** Id de debilidad o amenaza → id de palanca. */
-  palancas: Record<string, string>;
 }
 
 /** Fecha local en AAAA-MM-DD (no `toISOString`, que la pasa a UTC). */
@@ -47,6 +45,34 @@ export function fechaCorta(iso: string): string {
   return a && m && d ? `${d}/${m}/${a}` : iso;
 }
 
+/**
+ * DAFO_<referencia>_<fecha>, sin caracteres que den guerra en Windows o en el
+ * móvil. Lo comparten el Excel y el PDF.
+ */
+export function nombreBase(dafo: Dafo): string {
+  const ref =
+    dafo.referencia
+      .trim()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^A-Za-z0-9-]+/g, '_')
+      .replace(/^_+|_+$/g, '')
+      .slice(0, 60) || 'sin-referencia';
+  return `DAFO_${ref}_${dafo.fecha}`;
+}
+
+/** Descarga un fichero generado en el navegador. */
+export function descargarBlob(blob: Blob, nombre: string): void {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = nombre;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
 export function nuevoDafo(ahora: Date = new Date()): Dafo {
   return {
     referencia: '',
@@ -54,7 +80,6 @@ export function nuevoDafo(ahora: Date = new Date()): Dafo {
     fecha: hoy(ahora),
     puntos: [],
     notas: { F: '', D: '', O: '', A: '' },
-    palancas: {},
   };
 }
 
@@ -70,14 +95,8 @@ export function estaSeleccionado(dafo: Dafo, id: string): boolean {
   return dafo.puntos.some((p) => p.id === id);
 }
 
-function sinPalanca(palancas: Record<string, string>, id: string): Record<string, string> {
-  const resto = { ...palancas };
-  delete resto[id];
-  return resto;
-}
-
 /**
- * Pulsar un chip: si estaba, se quita (con su palanca); si no, entra con peso
+ * Pulsar un chip: si estaba, se quita; si no, entra con peso
  * Medio, salvo que el bloque ya tenga 6, en cuyo caso no cambia nada.
  */
 export function alternarPunto(dafo: Dafo, id: string): Dafo {
@@ -91,11 +110,7 @@ export function alternarPunto(dafo: Dafo, id: string): Dafo {
 }
 
 export function quitarPunto(dafo: Dafo, id: string): Dafo {
-  return {
-    ...dafo,
-    puntos: dafo.puntos.filter((p) => p.id !== id),
-    palancas: sinPalanca(dafo.palancas, id),
-  };
+  return { ...dafo, puntos: dafo.puntos.filter((p) => p.id !== id) };
 }
 
 /** "Otro...": un punto escrito a mano. Cuenta para el máximo como cualquier otro. */
@@ -117,17 +132,6 @@ export function cambiarPeso(dafo: Dafo, id: string, peso: Peso): Dafo {
 
 export function cambiarNotas(dafo: Dafo, bloque: Bloque, notas: string): Dafo {
   return { ...dafo, notas: { ...dafo.notas, [bloque]: notas } };
-}
-
-/** Palanca vacía = sin palanca. */
-export function cambiarPalanca(dafo: Dafo, id: string, palancaId: string): Dafo {
-  if (!palancaId) return { ...dafo, palancas: sinPalanca(dafo.palancas, id) };
-  return { ...dafo, palancas: { ...dafo.palancas, [id]: palancaId } };
-}
-
-/** Las debilidades y amenazas elegidas: lo que admite palanca. */
-export function puntosConPalanca(dafo: Dafo): Seleccion[] {
-  return dafo.puntos.filter((p) => p.bloque === 'D' || p.bloque === 'A');
 }
 
 export function nombreBloque(bloque: Bloque): string {
@@ -169,12 +173,6 @@ export function leerBorrador(bruto: string | null): Dafo | null {
   }
 
   const notasBrutas = (o.notas ?? {}) as Record<string, unknown>;
-  const palancas: Record<string, string> = {};
-  if (o.palancas && typeof o.palancas === 'object') {
-    for (const [k, v] of Object.entries(o.palancas as Record<string, unknown>)) {
-      if (typeof v === 'string' && v && puntos.some((p) => p.id === k)) palancas[k] = v;
-    }
-  }
 
   return {
     referencia: texto(o.referencia),
@@ -182,6 +180,5 @@ export function leerBorrador(bruto: string | null): Dafo | null {
     fecha: /^\d{4}-\d{2}-\d{2}$/.test(texto(o.fecha)) ? texto(o.fecha) : hoy(),
     puntos,
     notas: { F: texto(notasBrutas.F), D: texto(notasBrutas.D), O: texto(notasBrutas.O), A: texto(notasBrutas.A) },
-    palancas,
   };
 }

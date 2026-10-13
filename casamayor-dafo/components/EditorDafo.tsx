@@ -4,15 +4,13 @@ import { useEffect, useRef, useState } from 'react';
 import Logo from '@/components/Logo';
 import BotonSalir from '@/components/BotonSalir';
 import BloqueDafo from '@/components/BloqueDafo';
-import PasoPalancas from '@/components/PasoPalancas';
-import TarjetaResumen from '@/components/TarjetaResumen';
+import TarjetaResumen, { type EstadoDescarga } from '@/components/TarjetaResumen';
 import { ASESORES } from '@/data/asesores';
 import { BLOQUES, type Bloque } from '@/data/catalogo';
 import {
   alternarPunto,
   anadirPuntoLibre,
   cambiarNotas,
-  cambiarPalanca,
   cambiarPeso,
   fechaCorta,
   leerBorrador,
@@ -67,7 +65,8 @@ export default function EditorDafo() {
    */
   const [dafo, setDafo] = useState<Dafo | null>(null);
   const [abiertos, setAbiertos] = useState<Set<Bloque>>(new Set(['F']));
-  const [estadoExcel, setEstadoExcel] = useState<'listo' | 'generando' | 'error'>('listo');
+  const [estadoExcel, setEstadoExcel] = useState<EstadoDescarga>('listo');
+  const [estadoPdf, setEstadoPdf] = useState<EstadoDescarga>('listo');
   const [estadoCopia, setEstadoCopia] = useState<'listo' | 'copiado' | 'error'>('listo');
   const temporizadorCopia = useRef<ReturnType<typeof setTimeout>>();
 
@@ -105,6 +104,20 @@ export default function EditorDafo() {
     } catch (e) {
       console.error('[excel]', e);
       setEstadoExcel('error');
+    }
+  }
+
+  async function pdf() {
+    if (!dafo) return;
+    setEstadoPdf('generando');
+    try {
+      // Igual que exceljs, jsPDF solo se descarga cuando alguien pide el PDF.
+      const { descargarPdf } = await import('@/lib/pdf');
+      await descargarPdf(dafo);
+      setEstadoPdf('listo');
+    } catch (e) {
+      console.error('[pdf]', e);
+      setEstadoPdf('error');
     }
   }
 
@@ -190,16 +203,16 @@ export default function EditorDafo() {
             onNotas={(notas) => cambiar((d) => cambiarNotas(d, b.id, notas))}
           />
         ))}
-
-        <PasoPalancas dafo={dafo} onPalanca={(id, palancaId) => cambiar((d) => cambiarPalanca(d, id, palancaId))} />
       </main>
 
       <TarjetaResumen
         dafo={dafo}
         onExcel={excel}
+        onPdf={pdf}
         onCopiar={copiar}
         onNuevo={nuevo}
         estadoExcel={estadoExcel}
+        estadoPdf={estadoPdf}
         estadoCopia={estadoCopia}
       />
     </div>

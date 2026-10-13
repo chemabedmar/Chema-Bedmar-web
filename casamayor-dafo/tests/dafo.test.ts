@@ -1,17 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import { CATALOGO, puntosDe } from '@/data/catalogo';
-import { PALANCAS } from '@/data/palancas';
 import { ASESORES } from '@/data/asesores';
 import {
   MAX_POR_BLOQUE,
   alternarPunto,
   anadirPuntoLibre,
-  cambiarPalanca,
   cambiarPeso,
   hoy,
   leerBorrador,
   nuevoDafo,
-  puntosConPalanca,
   puntosDelBloque,
 } from '@/lib/dafo';
 import { textoResumen } from '@/lib/texto';
@@ -30,12 +27,11 @@ describe('catálogo', () => {
     }
   });
 
-  it('palancas con ids únicos', () => {
-    expect(new Set(PALANCAS.map((p) => p.id)).size).toBe(PALANCAS.length);
-  });
-
-  it('el equipo es el de la calculadora', () => {
-    expect(ASESORES.map((a) => a.nombre)).toEqual(['Olga', 'Jose', 'Pedro', 'Cristina', 'Fran', 'Patricia', 'Gabriela', 'Chema']);
+  it('el equipo: el de la calculadora más Santi', () => {
+    expect(ASESORES.map((a) => a.nombre)).toEqual([
+      'Olga', 'Jose', 'Pedro', 'Cristina', 'Fran', 'Patricia', 'Gabriela', 'Chema', 'Santi',
+    ]);
+    expect(new Set(ASESORES.map((a) => a.id)).size).toBe(ASESORES.length);
   });
 });
 
@@ -69,26 +65,12 @@ describe('selección de puntos', () => {
     expect(anadirPuntoLibre(d, 'O', 'feria del BARRIO')).toBe(d);
   });
 
-  it('quitar una debilidad borra también su palanca', () => {
-    const deb = puntosDe('D')[0].id;
-    let d = cambiarPalanca(alternarPunto(nuevoDafo(), deb), deb, 'P04');
-    expect(d.palancas).toEqual({ [deb]: 'P04' });
-    d = alternarPunto(d, deb);
-    expect(d.palancas).toEqual({});
-  });
-
-  it('solo debilidades y amenazas admiten palanca', () => {
-    let d = nuevoDafo();
-    for (const b of ['F', 'D', 'O', 'A'] as const) d = alternarPunto(d, puntosDe(b)[0].id);
-    expect(puntosConPalanca(d).map((p) => p.bloque)).toEqual(['D', 'A']);
-  });
 });
 
 describe('borrador en localStorage', () => {
   it('ida y vuelta sin perder nada', () => {
     let d = alternarPunto(nuevoDafo(), 'D05');
     d = cambiarPeso(d, 'D05', 3);
-    d = cambiarPalanca(d, 'D05', 'P01');
     d = anadirPuntoLibre(d, 'A', 'Vecino ruidoso', 'L-A-test');
     d = { ...d, referencia: 'C/ Mayor 1', asesorId: 'asesor-8', notas: { ...d.notas, D: 'ojo' } };
     expect(leerBorrador(JSON.stringify(d))).toEqual(d);
@@ -108,13 +90,14 @@ describe('borrador en localStorage', () => {
         { id: 'NOEXISTE', bloque: 'F', texto: 'x', peso: 2 },
         ...['F02', 'F03', 'F04', 'F05', 'F06', 'F07'].map((id) => ({ id, bloque: 'F', texto: id, peso: 1 })),
       ],
-      palancas: { F01: 'P01', D01: 'P02' },
+      palancas: { F01: 'P01' },
     };
     const d = leerBorrador(JSON.stringify(bruto))!;
     expect(d.puntos).toHaveLength(MAX_POR_BLOQUE);
     expect(d.puntos[0]).toMatchObject({ id: 'F01', peso: 2 });
     expect(d.puntos[0].texto).toBe(CATALOGO.find((p) => p.id === 'F01')!.texto);
-    expect(d.palancas).toEqual({ F01: 'P01' });
+    // Los borradores de cuando había palancas se leen sin ellas.
+    expect(d).not.toHaveProperty('palancas');
     expect(d.fecha).toBe('2026-01-02');
   });
 });
@@ -126,17 +109,16 @@ describe('fecha', () => {
 });
 
 describe('texto para WhatsApp', () => {
-  it('lleva cabecera, frase, scores, top y palancas en texto plano', () => {
+  it('lleva cabecera, frase, scores y top en texto plano', () => {
     let d = { ...nuevoDafo(new Date(2026, 9, 13)), referencia: 'Ref 123', asesorId: 'asesor-1' };
     d = alternarPunto(d, 'F01');
     d = alternarPunto(d, 'D05');
-    d = cambiarPalanca(d, 'D05', 'P04');
     const t = textoResumen(d);
     expect(t).toContain('DAFO de vivienda · Ref 123');
     expect(t).toContain('Asesor: Olga · Fecha: 13/10/2026');
     expect(t).toContain('FORTALEZAS: 2/18 · Moderado');
     expect(t).toContain('- Edificio sin ascensor (Medio)');
-    expect(t).toContain('Edificio sin ascensor → Home staging (alto impacto)');
+    expect(t).not.toMatch(/palanca/i);
     expect(t).not.toMatch(/[*_#]/);
   });
 });

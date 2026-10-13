@@ -2,9 +2,20 @@
 
 import { useEffect, useState } from 'react';
 import { BLOQUES } from '@/data/catalogo';
-import { buscarPalanca } from '@/data/palancas';
-import { NOMBRE_PESO, puntosConPalanca, type Dafo } from '@/lib/dafo';
+import { NOMBRE_PESO, type Dafo } from '@/lib/dafo';
 import { lectura, resumen } from '@/lib/score';
+
+export type EstadoDescarga = 'listo' | 'generando' | 'error';
+
+/** Texto corto en móvil (caben los cuatro botones en una fila) y completo desde md. */
+function Etiqueta({ corta, larga }: { corta: string; larga: string }) {
+  return (
+    <>
+      <span className="md:hidden">{corta}</span>
+      <span className="hidden md:inline">{larga}</span>
+    </>
+  );
+}
 
 function conSigno(n: number): string {
   return n > 0 ? `+${n}` : String(n);
@@ -17,16 +28,20 @@ function conSigno(n: number): string {
 export default function TarjetaResumen({
   dafo,
   onExcel,
+  onPdf,
   onCopiar,
   onNuevo,
   estadoExcel,
+  estadoPdf,
   estadoCopia,
 }: {
   dafo: Dafo;
   onExcel: () => void;
+  onPdf: () => void;
   onCopiar: () => void;
   onNuevo: () => void;
-  estadoExcel: 'listo' | 'generando' | 'error';
+  estadoExcel: EstadoDescarga;
+  estadoPdf: EstadoDescarga;
   estadoCopia: 'listo' | 'copiado' | 'error';
 }) {
   const [abierta, setAbierta] = useState(false);
@@ -35,9 +50,6 @@ export default function TarjetaResumen({
   }, []);
 
   const r = resumen(dafo);
-  const palancas = puntosConPalanca(dafo)
-    .map((p) => ({ p, palanca: buscarPalanca(dafo.palancas[p.id]) }))
-    .filter((x) => x.palanca);
 
   return (
     <section
@@ -106,41 +118,48 @@ export default function TarjetaResumen({
               </div>
             ))}
           </div>
-
-          {palancas.length > 0 ? (
-            <div>
-              <h3 className="text-[14px]">Palancas</h3>
-              <ul className="text-[13px] leading-snug">
-                {palancas.map(({ p, palanca }) => (
-                  <li key={p.id}>
-                    {p.texto} → <strong>{palanca!.texto}</strong>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
         </div>
       ) : null}
 
-      <div className="mt-3 grid grid-cols-3 gap-2">
+      <div className="mt-3 grid grid-cols-4 gap-2">
+        <button
+          type="button"
+          onClick={onPdf}
+          disabled={estadoPdf === 'generando'}
+          aria-label="Descargar PDF"
+          className="boton-principal px-1 py-2.5 text-[11px] tracking-[0.06em] md:px-2 md:text-[12px] md:tracking-[0.1em]"
+        >
+          {estadoPdf === 'generando' ? '…' : <Etiqueta corta="PDF" larga="Descargar PDF" />}
+        </button>
         <button
           type="button"
           onClick={onExcel}
           disabled={estadoExcel === 'generando'}
-          className="boton-principal px-2 py-2.5 text-[11px] md:text-[12px]"
+          aria-label="Descargar Excel"
+          className="boton-principal px-1 py-2.5 text-[11px] tracking-[0.06em] md:px-2 md:text-[12px] md:tracking-[0.1em]"
         >
-          {estadoExcel === 'generando' ? 'Generando…' : estadoExcel === 'error' ? 'Reintentar' : 'Descargar Excel'}
+          {estadoExcel === 'generando' ? '…' : <Etiqueta corta="Excel" larga="Descargar Excel" />}
         </button>
-        <button type="button" onClick={onCopiar} className="boton-borde px-2 py-2.5 text-[11px] md:text-[12px]">
-          {estadoCopia === 'copiado' ? 'Copiado' : estadoCopia === 'error' ? 'No se pudo' : 'Copiar resumen'}
+        <button
+          type="button"
+          onClick={onCopiar}
+          aria-label="Copiar resumen"
+          className="boton-borde px-1 py-2.5 text-[11px] tracking-[0.06em] md:px-2 md:text-[12px] md:tracking-[0.1em]"
+        >
+          {estadoCopia === 'copiado' ? 'Copiado' : estadoCopia === 'error' ? 'Error' : <Etiqueta corta="Copiar" larga="Copiar resumen" />}
         </button>
-        <button type="button" onClick={onNuevo} className="boton border-borde px-2 py-2.5 text-[11px] text-texto-suave hover:border-texto-suave md:text-[12px]">
-          Nuevo DAFO
+        <button
+          type="button"
+          onClick={onNuevo}
+          aria-label="Nuevo DAFO"
+          className="boton border-borde px-1 py-2.5 text-[11px] tracking-[0.06em] text-texto-suave hover:border-texto-suave md:px-2 md:text-[12px] md:tracking-[0.1em]"
+        >
+          <Etiqueta corta="Nuevo" larga="Nuevo DAFO" />
         </button>
       </div>
-      {estadoExcel === 'error' ? (
+      {estadoExcel === 'error' || estadoPdf === 'error' ? (
         <p role="alert" className="mt-2 text-[12px] text-texto">
-          No se ha podido generar el Excel. Vuelve a intentarlo.
+          No se ha podido generar el {estadoPdf === 'error' ? 'PDF' : 'Excel'}. Vuelve a intentarlo.
         </p>
       ) : null}
     </section>

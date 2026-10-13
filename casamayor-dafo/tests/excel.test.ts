@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import ExcelJS from 'exceljs';
 import { BLOQUES } from '@/data/catalogo';
-import { alternarPunto, anadirPuntoLibre, cambiarPalanca, cambiarPeso, nuevoDafo, type Dafo } from '@/lib/dafo';
+import { alternarPunto, anadirPuntoLibre, cambiarPeso, nuevoDafo, type Dafo } from '@/lib/dafo';
 import { FILA_CABECERA_DAFO, HOJA, construirLibro, generarExcel, nombreArchivo } from '@/lib/excel';
 import { balances, lectura, scorePorBloque } from '@/lib/score';
 
@@ -11,7 +11,6 @@ function ejemplo(): Dafo {
   d = cambiarPeso(d, 'F01', 3);
   d = cambiarPeso(d, 'A09', 1);
   d = anadirPuntoLibre(d, 'O', 'Feria anual en la plaza', 'L-O-1');
-  d = cambiarPalanca(d, 'D05', 'P01');
   d = { ...d, notas: { ...d.notas, F: 'Muy luminoso', A: 'Mucha oferta' } };
   return d;
 }
@@ -122,16 +121,11 @@ describe('Excel del DAFO', () => {
     expect((hoja.getCell(`B${disp.filaBalanceExterno}`).value as { result: number }).result).toBe(bal.externo);
   });
 
-  it('tabla de palancas con todas las debilidades y amenazas', async () => {
-    const d = ejemplo();
-    const { disposicion: disp } = construirLibro(d);
-    const hoja = (await abrir(d)).getWorksheet(HOJA)!;
-    const c = disp.palancasCabecera;
-    expect(hoja.getRow(c).values).toEqual([, 'Debilidad o amenaza', 'Palanca']);
-    expect(hoja.getCell(`A${c + 1}`).value).toBe('Edificio sin ascensor');
-    expect(hoja.getCell(`B${c + 1}`).value).toBe('Bajada de precio');
-    expect(hoja.getCell(`A${c + 4}`).value).toBe('Enfriamiento de demanda por tipos/financiación');
-    expect(hoja.getCell(`B${c + 4}`).value ?? '').toBe('');
+  it('ya no lleva tabla de palancas', async () => {
+    const hoja = (await abrir(ejemplo())).getWorksheet(HOJA)!;
+    hoja.eachRow((fila) => {
+      for (const v of fila.values as unknown[]) expect(String(v ?? '')).not.toMatch(/palanca/i);
+    });
   });
 
   it('con el DAFO vacío el rango sigue siendo válido', async () => {

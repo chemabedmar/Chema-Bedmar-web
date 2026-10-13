@@ -4,8 +4,7 @@
  */
 import { BLOQUES } from '@/data/catalogo';
 import { buscarAsesor } from '@/data/asesores';
-import { buscarPalanca } from '@/data/palancas';
-import { fechaCorta, puntosConPalanca, type Dafo, NOMBRE_PESO } from '@/lib/dafo';
+import { fechaCorta, type Dafo, NOMBRE_PESO } from '@/lib/dafo';
 import { lectura, resumen } from '@/lib/score';
 
 function conSigno(n: number): string {
@@ -31,15 +30,6 @@ export function textoResumen(dafo: Dafo): string {
     for (const p of top) lineas.push(`- ${p.texto} (${NOMBRE_PESO[p.peso]})`);
     const notas = dafo.notas[b.id].trim();
     if (notas) lineas.push(`Notas: ${notas.replace(/\s*\n\s*/g, ' / ')}`);
-  }
-
-  const elegidas = puntosConPalanca(dafo)
-    .map((p) => ({ p, palanca: buscarPalanca(dafo.palancas[p.id]) }))
-    .filter((x) => x.palanca);
-  if (elegidas.length > 0) {
-    lineas.push('');
-    lineas.push('PALANCAS');
-    for (const { p, palanca } of elegidas) lineas.push(`- ${p.texto} → ${palanca!.texto}`);
   }
 
   return lineas.join('\n');

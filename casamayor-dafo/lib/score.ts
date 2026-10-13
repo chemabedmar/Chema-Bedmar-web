@@ -63,9 +63,9 @@ export const MATRIZ_FRASES: Record<Tendencia, Record<Tendencia, string>> = {
     desfavorable: 'Mercado en contra y vivienda sin ventaja clara: precio competitivo y un plan de visibilidad desde el primer día.',
   },
   desfavorable: {
-    favorable: 'El mercado ayuda pero la vivienda pesa: activar palancas sobre las debilidades para no perder la demanda.',
-    equilibrado: 'La vivienda tiene más frenos que argumentos: trabajar palancas y precio antes de publicar.',
-    desfavorable: 'Escenario difícil: revisar el precio de salida con el propietario y activar varias palancas desde el inicio.',
+    favorable: 'El mercado ayuda pero la vivienda pesa: corregir o compensar las debilidades para no perder la demanda.',
+    equilibrado: 'La vivienda tiene más frenos que argumentos: trabajar la presentación y el precio antes de publicar.',
+    desfavorable: 'Escenario difícil: revisar el precio de salida con el propietario y reforzar la comercialización desde el inicio.',
   },
 };
 

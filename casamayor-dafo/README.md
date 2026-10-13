@@ -2,13 +2,13 @@
 
 Herramienta interna para que el asesor haga en el móvil, en pocos minutos, el DAFO
 de una vivienda: elige fortalezas, debilidades, oportunidades y amenazas de un
-catálogo, les da peso, asigna palancas y se lleva un resumen (texto para
-WhatsApp o correo) y un Excel editable.
+catálogo, les da peso y se lleva un resumen: texto para WhatsApp o correo, un
+PDF confidencial con el logotipo de Casamayor y un Excel editable.
 
 - Next.js 14 (App Router) + TypeScript + Tailwind. Sin base de datos.
 - El DAFO en curso se guarda en el navegador (`localStorage`, clave
   `dafo-borrador`) en cada cambio y se recupera al volver a abrir la página.
-- El Excel se genera en el propio navegador con `exceljs`.
+- El Excel (`exceljs`) y el PDF (`jsPDF`) se generan en el propio navegador.
 - Mismo acceso, tipografía (Roboto) y colores que `casamayor-calculadora`.
 
 ## Puesta en marcha en local
@@ -90,8 +90,7 @@ Todo está en `data/`:
   - Corregir el `texto` de un punto existente es seguro: los borradores toman el
     texto actualizado.
   - El orden de las líneas es el orden de los chips dentro de cada grupo.
-- **`data/palancas.ts`**: las palancas (mismas reglas de id).
-- **`data/asesores.ts`**: el equipo, igual que en la calculadora.
+- **`data/asesores.ts`**: el equipo (el de la calculadora más Santi).
 
 Después: `npm test` (comprueba, entre otras cosas, que no haya ids repetidos) y
 despliega.
@@ -105,6 +104,9 @@ despliega.
 - Balance interno = F − D; balance externo = O − A. Desde +4 es favorable, desde
   −4 desfavorable y entre −3 y +3 equilibrado. La frase global sale de cruzar
   ambos (matriz 3 × 3 en `lib/score.ts`, `MATRIZ_FRASES`).
+- El PDF lleva el logotipo, la referencia, el asesor y la fecha, la lectura
+  global, los cuatro bloques con sus puntos, pesos y notas, y en cada página el
+  aviso de información confidencial (texto en `lib/pdf.ts`, `AVISO_CONFIDENCIAL`).
 - El Excel repite el cálculo con fórmulas (`SUMIFS` e `IF` anidados), así que si
   el asesor cambia un peso en Excel el resumen se recalcula.
 
@@ -115,11 +117,12 @@ app/page.tsx            La pantalla del DAFO (todo en una)
 app/acceso/             Pantalla de contraseña
 app/api/acceso/         Entrar (POST) y salir (DELETE)
 middleware.ts           Protege todas las rutas
-components/             EditorDafo, BloqueDafo, PasoPalancas, TarjetaResumen…
-data/                   Catálogo, palancas, asesores y colores de marca
+components/             EditorDafo, BloqueDafo, TarjetaResumen…
+data/                   Catálogo, asesores y colores de marca
 lib/dafo.ts             El objeto Dafo y sus operaciones (puras)
 lib/score.ts            Scores, lecturas, balances, frase global, top 3
 lib/texto.ts            Resumen en texto plano
 lib/excel.ts            Excel con exceljs
+lib/pdf.ts              PDF con jsPDF (logo, referencia, asesor, fecha, aviso confidencial)
 tests/                  Vitest
 ```
